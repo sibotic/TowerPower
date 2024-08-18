@@ -69,7 +69,9 @@ public abstract class ProjectileWeapon : MonoBehaviour
     {
         _readyToShoot = false;
 
-        Vector3 direction = GetTarget();
+        Vector3 direction = ApplySpread(GetTarget());
+                
+
 
         GameObject currentBullet = Instantiate(bullet, attackpoint.position, Quaternion.identity);
         currentBullet.GetComponent<Projectile>().SetDamage(damageMultiplier);
@@ -119,5 +121,13 @@ public abstract class ProjectileWeapon : MonoBehaviour
         _bulletsLeft = reloadAmount;
         _reloading = false;
         Debug.Log("Reload Finished!");
+    }
+
+    Vector3 ApplySpread(Vector3 directionWithoutSpread){
+        float xSpread = Random.Range(-spread, spread) / 10;
+        float ySpread = Random.Range(-spread, spread) / 10;
+
+        Vector3 directionWithSpread = directionWithoutSpread + new Vector3(xSpread, ySpread, 0);
+        return directionWithSpread;
     }
 }

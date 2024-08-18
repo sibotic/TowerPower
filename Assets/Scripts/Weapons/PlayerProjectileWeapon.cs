@@ -23,14 +23,9 @@ public class PlayerProjectileWeapon : ProjectileWeapon
             targetPoint = ray.GetPoint(75);
         }
 
-        Vector3 directionWithoutSpread = targetPoint - attackpoint.position;
+        Vector3 direction = targetPoint - attackpoint.position;
 
-        float xSpread = Random.Range(-spread, spread);
-        float ySpread = Random.Range(-spread, spread);
-
-        Vector3 directionWithSpread = directionWithoutSpread + new Vector3(xSpread, ySpread, 0);
-
-        return directionWithSpread;
+        return direction;
     }
 
     public override bool ShootingInput()
@@ -41,7 +36,7 @@ public class PlayerProjectileWeapon : ProjectileWeapon
 
     public override void ManualReload()
     {
-        if (Input.GetKeyDown(reloadKey) && !_reloading && _bulletsLeft != magazineSize && !_infiniteAmmo)// || _shooting && _bulletsLeft <= 0)
+        if (Input.GetKeyDown(reloadKey) && !_reloading && _bulletsLeft < magazineSize && !_infiniteAmmo && _ammoLeft > 0)// || _shooting && _bulletsLeft <= 0)
         {
             Reload();
         }

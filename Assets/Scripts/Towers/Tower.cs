@@ -5,12 +5,12 @@ public class Tower : ProjectileWeapon
     public float range, turnSpeed;
     public string enemyTag = "Enemy"; //might allow to have an enemy that makes towers shoot the player
     public LayerMask enemyLayer;
+    public float spaceoccupied = 2;
     //maybe add range type so later there can be stuff with min ranges, attack the air or not etc
     [SerializeField]
     Transform _targetEnemy = null;
 
-    private void Start()
-    {
+    private void Start(){
         InvokeRepeating("UpdateTargetEnemy", 0, .5F);
     }
 
