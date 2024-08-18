@@ -26,7 +26,7 @@ public class Creature : Health
 
     void FixedUpdate()
     {
-        if(_distanceToTarget < 0.2f || _playerInRange){
+        if(_distanceToTarget < 0.4f || _playerInRange){
             UpdateTarget();
         }else{
             MoveCreature();

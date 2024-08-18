@@ -8,6 +8,7 @@ public class Projectile : MonoBehaviour
     float _damage;
 
     void OnCollisionEnter(Collision collision) {
+        Debug.Log("Collision!");
         if(collision.gameObject.TryGetComponent<Creature>(out Creature creature)) {
             creature.TakeDamage(_damage);
         }
