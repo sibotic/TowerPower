@@ -8,7 +8,6 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Movement")]
     public float moveSpeed = 12;
-    public float groundDrag = 2;
     public float sprintSpeedMultiplier = 2;
 
     Rigidbody rb;
@@ -28,9 +27,18 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate(){
         MovePlayer();
+        SpeedControl();
     }
 
     void MovePlayer(){
-        rb.AddForce(moveDirection.normalized * moveSpeed, ForceMode.Force);
+        rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+    }
+
+    void SpeedControl(){
+        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        if(flatVel.magnitude > moveSpeed){
+            Vector3 limitedVel = flatVel.normalized * moveSpeed;
+            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+        }
     }
 }
