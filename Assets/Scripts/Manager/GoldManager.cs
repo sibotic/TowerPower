@@ -1,7 +1,8 @@
-using UnityEngine;
+using UnityEngine.Events;
 public static class GoldManager
 {
     static float _currentGold;
+    public static UnityEvent goldChanged = new UnityEvent();
 
     public static float GetCurrentGold()
     {
@@ -30,6 +31,6 @@ public static class GoldManager
 
     static void LogChanges()
     {
-        Debug.Log($"{_currentGold}$");
+        goldChanged.Invoke();
     }
 }

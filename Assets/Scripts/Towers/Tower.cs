@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class Tower : ProjectileWeapon
 {
-    public float range, turnSpeed;
+    public float range, turnSpeed, cost;
     public string enemyTag = "Enemy"; //might allow to have an enemy that makes towers shoot the player
     public LayerMask enemyLayer;
     public float spaceoccupied = 2;
+    [SerializeField] GameObject upgrade;
     //maybe add range type so later there can be stuff with min ranges, attack the air or not etc
-    [SerializeField]
     Transform _targetEnemy = null;
     Vector3 _lastTarget;
 
@@ -65,7 +65,7 @@ public class Tower : ProjectileWeapon
             target = _lastTarget;
         }
 
-        return (target, homingProjectiles? _targetEnemy : null);
+        return (target, homingProjectiles ? _targetEnemy : null);
     }
 
     public override bool ShootingInput()
@@ -87,4 +87,18 @@ public class Tower : ProjectileWeapon
         Gizmos.DrawSphere(transform.position, range);
     }
 
+    public void Upgrade()
+    {
+        if (upgrade == null)
+        {
+            return;
+        }
+
+        if (GoldManager.SpendGold(upgrade.GetComponent<Tower>().cost))
+        {
+            Instantiate(upgrade, transform.position, Quaternion.identity);
+            Destroy(this.gameObject);
+        }
+
+    }
 }

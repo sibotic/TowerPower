@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -9,6 +6,9 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement")]
     public float moveSpeed = 12;
     public float sprintSpeedMultiplier = 2;
+
+    [Header("Jump")]
+    public float jumpForce = 15;
 
     Rigidbody rb;
     Vector3 moveDirection;
@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         moveDirection = transform.right * Input.GetAxisRaw("Horizontal") + transform.forward * Input.GetAxisRaw("Vertical");
+        if(Input.GetKeyDown(KeyCode.Space)){Jump();}
     }
 
     void FixedUpdate(){
@@ -40,5 +41,9 @@ public class PlayerMovement : MonoBehaviour
             Vector3 limitedVel = flatVel.normalized * moveSpeed;
             rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
         }
+    }
+
+    void Jump(){
+        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
     }
 }

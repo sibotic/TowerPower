@@ -2,14 +2,17 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public float baseDamage;
+    public float baseDamage, lifetime;
     public float bounces = 0;
     public float bounceDamageMultiplier = 1.5f;
-    float _damage, _bulletSpeed;
+    float _damage, _bulletSpeed, _startOfLife;
     bool _seeking;
-    //TODO lifetime
     Transform _target = null;
     Rigidbody _rb = null;
+
+    private void Start() {
+        _startOfLife = Time.time;
+    }
 
     void OnCollisionEnter(Collision collision) {
         if(collision.gameObject.TryGetComponent<Creature>(out Creature creature)) {
@@ -31,6 +34,10 @@ public class Projectile : MonoBehaviour
             }else{
                 Destroy(this.gameObject);
             }
+        }
+
+        if(_startOfLife + lifetime < Time.time){
+            Destroy(gameObject);
         }
     }
 

@@ -15,7 +15,6 @@ public abstract class Health : MonoBehaviour
     }
 
     public (float theoryDamage, float actualDamage) TakeDamage(float amount){
-        Debug.Log($"Taking {amount} damage");
         _health -= amount;
         
         _healthBar.UpdateStatusBar(_health, maxHealth);

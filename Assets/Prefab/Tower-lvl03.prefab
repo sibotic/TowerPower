@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2089609875738231064}
   - component: {fileID: 2089609875738231071}
   m_Layer: 14
-  m_Name: Tower
+  m_Name: Tower-lvl03
   m_TagString: Tower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,25 +47,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 6479960818442666905, guid: f49e4fb71d582a443b9cad1947f00946, type: 3}
-  timeBetweenShooting: 0.4
+  timeBetweenShooting: 0.3
   spread: 0.1
   reloadTime: 0
   timeBetweenShots: 0.5
   shootForce: 10
-  damageMultiplier: 0.5
+  damageMultiplier: 1.5
   magazineSize: 100
   bulletsPerTap: 1
   ammoCapacity: 0
+  homingProjectiles: 1
   attackpoint: {fileID: 2089609876328213397}
+  txtAmmo: {fileID: 0}
   reloadType: 0
-  range: 15
+  range: 25
   turnSpeed: 2
+  cost: 50
   enemyTag: Enemy
   enemyLayer:
     serializedVersion: 2
     m_Bits: 4096
   spaceoccupied: 2
-  _targetEnemy: {fileID: 0}
+  upgrade: {fileID: 0}
 --- !u!1 &2089609875789672299
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,8 +195,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2089609876328213396}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 1.302, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalPosition: {x: 0, y: 2.477, z: -0}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2089609875738231064}
@@ -442,7 +445,7 @@ ParticleSystem:
       maxColor: {r: 0.956295, g: 1, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.87081707, g: 1, b: 0, a: 1}
+        key0: {r: 0.014359474, g: 0, b: 1, a: 1}
         key1: {r: 1, g: 0.3539567, b: 0, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
@@ -472,7 +475,7 @@ ParticleSystem:
       minGradient:
         serializedVersion: 2
         key0: {r: 0.7169812, g: 0.3869389, b: 0, a: 1}
-        key1: {r: 1, g: 0.8345159, b: 0.504717, a: 1}
+        key1: {r: 1, g: 0.5058824, b: 0.5431263, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
