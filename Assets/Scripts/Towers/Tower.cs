@@ -9,8 +9,11 @@ public class Tower : ProjectileWeapon
     //maybe add range type so later there can be stuff with min ranges, attack the air or not etc
     [SerializeField]
     Transform _targetEnemy = null;
+    Vector3 _lastTarget;
 
-    private void Start(){
+    private void Start()
+    {
+        _lastTarget = transform.position;
         InvokeRepeating("UpdateTargetEnemy", 0, .5F);
     }
 
@@ -49,9 +52,20 @@ public class Tower : ProjectileWeapon
         }
     }
 
-    public override Vector3 GetTarget()
+    public override (Vector3, Transform) GetTarget()
     {
-         return (_targetEnemy.position - attackpoint.position).normalized;
+        Vector3 target;
+        try
+        {
+            target = (_targetEnemy.position - attackpoint.position).normalized;
+            _lastTarget = target;
+        }
+        catch (System.Exception)
+        {
+            target = _lastTarget;
+        }
+
+        return (target, homingProjectiles? _targetEnemy : null);
     }
 
     public override bool ShootingInput()

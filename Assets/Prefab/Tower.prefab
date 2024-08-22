@@ -51,7 +51,7 @@ MonoBehaviour:
   spread: 0.1
   reloadTime: 0
   timeBetweenShots: 0.5
-  shootForce: 20
+  shootForce: 10
   damageMultiplier: 0.5
   magazineSize: 100
   bulletsPerTap: 1

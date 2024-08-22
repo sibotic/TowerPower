@@ -1,6 +1,8 @@
 using UnityEngine;
+using TMPro;
 
-enum ReloadType {
+enum ReloadType
+{
     Manual,
     Automatic
 }
@@ -12,24 +14,35 @@ public abstract class ProjectileWeapon : MonoBehaviour
     public float timeBetweenShooting, spread, reloadTime, timeBetweenShots, shootForce;
     public float damageMultiplier = 1;
     public int magazineSize, bulletsPerTap, ammoCapacity;
+    public bool homingProjectiles;
     public Transform attackpoint;
+    public TMP_Text txtAmmo = null;
 
     [SerializeField]
     ReloadType reloadType;
     internal int _bulletsLeft, _bulletsShot, _ammoLeft;
-    internal bool _shooting, _readyToShoot, _reloading, _resetShotInvoked, _infiniteAmmo;
+    internal bool _shooting, _readyToShoot, _reloading, _resetShotInvoked, _infiniteAmmo, _infiniteMagazine;
 
 
     void Awake()
     {
-        if (ammoCapacity == 0){
+        if (magazineSize == 0)
+        {
+            _infiniteMagazine = true;
+        }
+        if (ammoCapacity == 0)
+        {
             _infiniteAmmo = true;
         }
-        _bulletsLeft = magazineSize;
-        _readyToShoot = true;
-        _ammoLeft = ammoCapacity;
 
-    } 
+
+        _bulletsLeft = _infiniteMagazine ? 1 : magazineSize;
+        _readyToShoot = true;
+        _ammoLeft = ammoCapacity == 0 ? magazineSize : ammoCapacity;
+
+        UpdateTxt();
+
+    }
 
     void Update()
     {
@@ -54,13 +67,13 @@ public abstract class ProjectileWeapon : MonoBehaviour
             _bulletsShot = 0;
             Shoot();
         }
-
+        UpdateTxt();
     }
 
-    public virtual void ManualReload(){}
-    public void AutomaticReload(){
+    public virtual void ManualReload() { }
+    public void AutomaticReload()
+    {
         //TODO
-
     }
 
     public abstract bool ShootingInput();
@@ -68,20 +81,27 @@ public abstract class ProjectileWeapon : MonoBehaviour
     void Shoot()
     {
         _readyToShoot = false;
+        (Vector3, Transform) target = GetTarget();
+        Vector3 directionWithoutSpread = target.Item1;
+        Vector3 direction = ApplySpread(directionWithoutSpread);
 
-        Vector3 direction = ApplySpread(GetTarget());
-                
 
 
         GameObject currentBullet = Instantiate(bullet, attackpoint.position, Quaternion.identity);
-        currentBullet.GetComponent<Projectile>().SetDamage(damageMultiplier);
+        currentBullet.GetComponent<Projectile>().ApplyDamageMultiplier(damageMultiplier);
+
+        if (homingProjectiles)
+        {
+            currentBullet.GetComponent<Projectile>().Seek(target.Item2, shootForce);
+        }
 
         currentBullet.transform.forward = direction.normalized;
 
-        currentBullet.GetComponent<Rigidbody>().AddForce(direction.normalized * shootForce, ForceMode.Impulse);
+        currentBullet.GetComponent<Rigidbody>().AddForce(direction.normalized * (homingProjectiles ? 0 : shootForce), ForceMode.Impulse);
 
 
-        if(!_infiniteAmmo){
+        if (!_infiniteMagazine)
+        {
             _bulletsLeft--;
         }
 
@@ -99,7 +119,7 @@ public abstract class ProjectileWeapon : MonoBehaviour
         }
     }
 
-    public abstract Vector3 GetTarget();
+    public abstract (Vector3, Transform) GetTarget();
 
     void ResetShot()
     {
@@ -109,7 +129,6 @@ public abstract class ProjectileWeapon : MonoBehaviour
 
     internal void Reload()
     {
-        Debug.Log("Reloadin. . .");
         _reloading = true;
         Invoke("ReloadFinished", reloadTime);
     }
@@ -117,17 +136,25 @@ public abstract class ProjectileWeapon : MonoBehaviour
     void ReloadFinished()
     {
         int reloadAmount = _ammoLeft - magazineSize < 0 ? _ammoLeft : magazineSize;
-        _ammoLeft -= reloadAmount;
+        _ammoLeft -= _infiniteAmmo ? 0 : reloadAmount;
         _bulletsLeft = reloadAmount;
         _reloading = false;
-        Debug.Log("Reload Finished!");
     }
 
-    Vector3 ApplySpread(Vector3 directionWithoutSpread){
+    Vector3 ApplySpread(Vector3 directionWithoutSpread)
+    {
         float xSpread = Random.Range(-spread, spread) / 10;
         float ySpread = Random.Range(-spread, spread) / 10;
 
         Vector3 directionWithSpread = directionWithoutSpread + new Vector3(xSpread, ySpread, 0);
         return directionWithSpread;
+    }
+
+    void UpdateTxt()
+    {   
+        if(txtAmmo != null){
+            txtAmmo.text = _reloading ? "Reloading .." : $"{_bulletsLeft / bulletsPerTap}/{magazineSize / bulletsPerTap} ({_ammoLeft})";
+             
+        }
     }
 }

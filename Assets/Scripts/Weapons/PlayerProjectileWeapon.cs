@@ -8,7 +8,7 @@ public class PlayerProjectileWeapon : ProjectileWeapon
     KeyCode fireKey = KeyCode.Mouse0;
     KeyCode reloadKey = KeyCode.R;
 
-    public override Vector3 GetTarget()
+    public override (Vector3, Transform) GetTarget()
     {
         Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
@@ -25,7 +25,7 @@ public class PlayerProjectileWeapon : ProjectileWeapon
 
         Vector3 direction = targetPoint - attackpoint.position;
 
-        return direction;
+        return (direction, null);
     }
 
     public override bool ShootingInput()
