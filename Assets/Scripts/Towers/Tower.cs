@@ -1,3 +1,4 @@
+using Palmmedia.ReportGenerator.Core.Parser.Analysis;
 using UnityEngine;
 
 public class Tower : ProjectileWeapon
@@ -5,8 +6,8 @@ public class Tower : ProjectileWeapon
     //maybe add range type so later there can be stuff with min ranges, attack the air or not etc
     [Header("Tower Stats")]
     public float range;
-    public float  turnSpeed;
-    public float  cost;
+    public float turnSpeed;
+    public float cost;
     public float spaceoccupied = 2;
     public float updateTarget = .5f;
     public LayerMask targetLayer;
@@ -23,23 +24,21 @@ public class Tower : ProjectileWeapon
 
     void UpdateTargetEnemy()
     {
-        //change to use OverlapSpheres to get all enemies inside the sphgere, not in the entire game
-        //can also implement stuff like first or last enemy with this later on
-
         Collider[] targets = Physics.OverlapSphere(transform.position, range, targetLayer);
         float _shortestDistance = Mathf.Infinity;
         GameObject _nearestEnemy = null;
         foreach (Collider enemy in targets)
         {
-            float _distanceToEnemy = Vector3.Distance(enemy.transform.position, this.transform.position);
+            float _distanceToEnemy = (enemy.transform.position - transform.position).sqrMagnitude;
             if (_distanceToEnemy < _shortestDistance)
             {
                 _shortestDistance = _distanceToEnemy;
                 _nearestEnemy = enemy.gameObject;
+
             }
         }
 
-        if (_nearestEnemy != null && _shortestDistance <= range)
+        if (_nearestEnemy != null)
         {
             _targetEnemy = _nearestEnemy.transform;
         }
