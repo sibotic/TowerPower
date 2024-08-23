@@ -11,8 +11,8 @@ public class Tower : ProjectileWeapon
     public float spaceoccupied = 2;
     public float updateTarget = .5f;
     public LayerMask targetLayer;
+    [SerializeField] GameObject upgrade;
 
-    GameObject upgrade;
     Transform _targetEnemy = null;
     Vector3 _lastTarget;
 

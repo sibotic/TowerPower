@@ -65,9 +65,11 @@ MonoBehaviour:
   turnSpeed: 2
   cost: 250
   spaceoccupied: 2
+  updateTarget: 0.5
   targetLayer:
     serializedVersion: 2
     m_Bits: 4096
+  upgrade: {fileID: 2089609875738231070, guid: 53d859326ef40b14d883e3da968aff99, type: 3}
 --- !u!1 &2089609875789672299
 GameObject:
   m_ObjectHideFlags: 0
