@@ -12,11 +12,15 @@ public class PlayerProjectileWeapon : ProjectileWeapon
     {
         Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
+        Transform targetToSeek = null;
 
         Vector3 targetPoint;
         if (Physics.Raycast(ray, out hit))
         {
             targetPoint = hit.point;
+            if(homingProjectiles && hit.collider.gameObject.layer == 12){
+                targetToSeek = hit.transform;
+            }
         }
         else
         {
@@ -25,7 +29,8 @@ public class PlayerProjectileWeapon : ProjectileWeapon
 
         Vector3 direction = targetPoint - GetNextAttackPoint().position;
 
-        return (direction, null);
+
+        return (direction, targetToSeek);
     }
 
     public override bool ShootingInput()

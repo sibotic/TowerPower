@@ -7761,7 +7761,7 @@ PrefabInstance:
     - target: {fileID: 7139042676972845647, guid: 2eb31e075821d014e8569cb340c93a58, type: 3}
       propertyPath: bullet
       value: 
-      objectReference: {fileID: 6479960818442666905, guid: 20b275372bdb6c447a2b63929215073e, type: 3}
+      objectReference: {fileID: 6479960818442666905, guid: f49e4fb71d582a443b9cad1947f00946, type: 3}
     - target: {fileID: 7139042676972845647, guid: 2eb31e075821d014e8569cb340c93a58, type: 3}
       propertyPath: spread
       value: 1
@@ -7800,7 +7800,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7139042676972845647, guid: 2eb31e075821d014e8569cb340c93a58, type: 3}
       propertyPath: homingProjectiles
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7139042676972845647, guid: 2eb31e075821d014e8569cb340c93a58, type: 3}
       propertyPath: timeBetweenShooting

@@ -107,14 +107,14 @@ public abstract class ProjectileWeapon : MonoBehaviour
         projectileScript.ApplyDamageMultiplier(damageMultiplier);
         projectileScript.SetOrigin(_scriptReference);
 
-        if (homingProjectiles)
+        if (homingProjectiles && target.Item2 != null)
         {
             currentBullet.GetComponent<Projectile>().Seek(target.Item2, shootForce);
         }
 
         currentBullet.transform.forward = direction.normalized;
 
-        currentBullet.GetComponent<Rigidbody>().AddForce(direction.normalized * (homingProjectiles ? 0 : shootForce), ForceMode.Impulse);
+        currentBullet.GetComponent<Rigidbody>().AddForce(direction.normalized * (homingProjectiles&&target.Item2!=null ? 0 : shootForce), ForceMode.Impulse);
 
 
         if (!_infiniteMagazine)
