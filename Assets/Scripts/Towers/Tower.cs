@@ -57,7 +57,7 @@ public class Tower : ProjectileWeapon
         Vector3 target;
         try
         {
-            target = (_targetEnemy.position - attackpoint.position).normalized;
+            target = (_targetEnemy.position - GetNextAttackPoint().position).normalized;
             _lastTarget = target;
         }
         catch (System.Exception)

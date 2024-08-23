@@ -27,7 +27,6 @@ public class Builder : MonoBehaviour
                 Collider[] nearbyTowers = Physics.OverlapSphere(targetPoint, neededSpace, _towerLayer);
                 if (nearbyTowers.Length == 0)
                 {
-                    Debug.Log("Gold left to spend: " + GoldManager.GetCurrentGold());
                     if (GoldManager.SpendGold(towerToBuild.GetComponent<Tower>().cost))
                     {
                         Instantiate(towerToBuild, targetPoint + positionOffset, Quaternion.identity);
@@ -45,7 +44,6 @@ public class Builder : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, _towerLayer))
             {
-                Debug.Log(hit.collider.gameObject.name);
                 hit.transform.gameObject.GetComponentInParent<Tower>().Upgrade();
             }
         }

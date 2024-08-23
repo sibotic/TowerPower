@@ -4,7 +4,6 @@ public class Creature : Health
 {
     public float moveSpeed = .5f;
     public float attackRange = 5; //for later use
-    public Transform[] waypoints;
 
     Transform _target;
     float _distanceToTarget;
@@ -16,7 +15,7 @@ public class Creature : Health
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        _target = waypoints[_currentWaypoint];
+        _target = Waypoints.GetWaypoint(_currentWaypoint);
     }
 
     void Update()
@@ -42,13 +41,14 @@ public class Creature : Health
 
     void UpdateTarget(){
         //some logic to attack player
-        if(_currentWaypoint + 1 >= waypoints.Length){
+        Transform nextWaypoint = Waypoints.GetWaypoint(_currentWaypoint+1);
+        if(nextWaypoint == null){
             Destroy(this.gameObject);
         }else{
             _currentWaypoint++;
-            _target = waypoints[_currentWaypoint];
-        }
+            _target = nextWaypoint;
 
+        }
     }
 
 }

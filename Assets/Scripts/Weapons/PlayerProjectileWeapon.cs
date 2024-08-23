@@ -23,7 +23,7 @@ public class PlayerProjectileWeapon : ProjectileWeapon
             targetPoint = ray.GetPoint(75);
         }
 
-        Vector3 direction = targetPoint - attackpoint.position;
+        Vector3 direction = targetPoint - GetNextAttackPoint().position;
 
         return (direction, null);
     }
@@ -36,7 +36,7 @@ public class PlayerProjectileWeapon : ProjectileWeapon
 
     public override void ManualReload()
     {
-        if (Input.GetKeyDown(reloadKey) && !_reloading && _bulletsLeft < magazineSize && !_infiniteAmmo && _ammoLeft > 0)// || _shooting && _bulletsLeft <= 0)
+        if (Input.GetKeyDown(reloadKey) && !_reloading && _bulletsLeft < magazineSize && !_infiniteMagazine && _ammoLeft > 0)// || _shooting && _bulletsLeft <= 0)
         {
             Reload();
         }

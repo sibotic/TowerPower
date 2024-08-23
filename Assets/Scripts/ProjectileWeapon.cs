@@ -15,12 +15,12 @@ public abstract class ProjectileWeapon : MonoBehaviour
     public float damageMultiplier = 1;
     public int magazineSize, bulletsPerTap, ammoCapacity;
     public bool homingProjectiles;
-    public Transform attackpoint;
+    public Transform[] attackpoints;
     public TMP_Text txtAmmo = null;
 
     [SerializeField]
     ReloadType reloadType;
-    internal int _bulletsLeft, _bulletsShot, _ammoLeft;
+    internal int _bulletsLeft, _bulletsShot, _ammoLeft, _currentAttackpoint;
     internal bool _shooting, _readyToShoot, _reloading, _resetShotInvoked, _infiniteAmmo, _infiniteMagazine;
 
 
@@ -87,7 +87,7 @@ public abstract class ProjectileWeapon : MonoBehaviour
 
 
 
-        GameObject currentBullet = Instantiate(bullet, attackpoint.position, Quaternion.identity);
+        GameObject currentBullet = Instantiate(bullet, attackpoints[_currentAttackpoint].position, Quaternion.identity);
         currentBullet.GetComponent<Projectile>().ApplyDamageMultiplier(damageMultiplier);
 
         if (homingProjectiles)
@@ -150,11 +150,25 @@ public abstract class ProjectileWeapon : MonoBehaviour
         return directionWithSpread;
     }
 
+    internal Transform GetNextAttackPoint()
+    {
+        if (_currentAttackpoint + 1 < attackpoints.Length)
+        {
+            _currentAttackpoint++;
+        }
+        else
+        {
+            _currentAttackpoint = 0;
+        }
+        return attackpoints[_currentAttackpoint];
+    }
+
     void UpdateTxt()
-    {   
-        if(txtAmmo != null){
+    {
+        if (txtAmmo != null)
+        {
             txtAmmo.text = _reloading ? "Reloading .." : $"{_bulletsLeft / bulletsPerTap}/{magazineSize / bulletsPerTap} ({_ammoLeft})";
-             
+
         }
     }
 }
