@@ -4940,12 +4940,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de3de1884b70e8e479e82e611b5cf653, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 4096
   baseDamage: 5
   lifetime: 5
   bounces: 0
   bounceDamageMultiplier: 0
+  hoamingRadius: 5
   explosionRadius: 0
   explosionDamage: 0
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 4096

@@ -107,7 +107,7 @@ public abstract class ProjectileWeapon : MonoBehaviour
         projectileScript.ApplyDamageMultiplier(damageMultiplier);
         projectileScript.SetOrigin(_scriptReference);
 
-        if (homingProjectiles && target.Item2 != null)
+        if (homingProjectiles)
         {
             currentBullet.GetComponent<Projectile>().Seek(target.Item2, shootForce);
         }

@@ -64,7 +64,7 @@ MonoBehaviour:
   range: 15
   turnSpeed: 2
   cost: 250
-  spaceoccupied: 2
+  spaceoccupied: 8
   updateTarget: 0.5
   targetLayer:
     serializedVersion: 2
