@@ -8,6 +8,7 @@ public class Tower : ProjectileWeapon
     public float  turnSpeed;
     public float  cost;
     public float spaceoccupied = 2;
+    public float updateTarget = .5f;
     public LayerMask targetLayer;
 
     GameObject upgrade;
@@ -17,7 +18,7 @@ public class Tower : ProjectileWeapon
     private void Start()
     {
         _lastTarget = transform.position;
-        InvokeRepeating("UpdateTargetEnemy", 0, .5F);
+        InvokeRepeating("UpdateTargetEnemy", 0, updateTarget);
     }
 
     void UpdateTargetEnemy()

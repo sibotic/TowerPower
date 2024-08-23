@@ -49,31 +49,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 6479960818442666905, guid: f49e4fb71d582a443b9cad1947f00946, type: 3}
-  timeBetweenShooting: 0.1
-  spread: 0.1
-  reloadTime: 0
-  timeBetweenShots: 0.1
-  shootForce: 10
-  damageMultiplier: 1.5
-  magazineSize: 100
-  bulletsPerTap: 1
-  ammoCapacity: 0
   homingProjectiles: 1
+  damageMultiplier: 1.5
   attackpoints:
   - {fileID: 2089609876328213397}
   - {fileID: 989617361006997385}
   - {fileID: 3275067983101590671}
-  txtAmmo: {fileID: 0}
   reloadType: 0
+  reloadTime: 0
+  magazineSize: 100
+  bulletsPerTap: 1
+  ammoCapacity: 0
+  txtAmmo: {fileID: 0}
+  timeBetweenShooting: 0.1
+  spread: 0.1
+  timeBetweenShots: 0.1
+  shootForce: 10
   range: 25
   turnSpeed: 2
   cost: 1200
-  enemyTag: Enemy
-  enemyLayer:
+  spaceoccupied: 2
+  targetLayer:
     serializedVersion: 2
     m_Bits: 4096
-  spaceoccupied: 2
-  upgrade: {fileID: 0}
 --- !u!1 &2089609875789672299
 GameObject:
   m_ObjectHideFlags: 0
