@@ -2,12 +2,15 @@ using UnityEngine;
 
 public class Tower : ProjectileWeapon
 {
-    public float range, turnSpeed, cost;
-    public string enemyTag = "Enemy"; //might allow to have an enemy that makes towers shoot the player
-    public LayerMask enemyLayer;
-    public float spaceoccupied = 2;
-    [SerializeField] GameObject upgrade;
     //maybe add range type so later there can be stuff with min ranges, attack the air or not etc
+    [Header("Tower Stats")]
+    public float range;
+    public float  turnSpeed;
+    public float  cost;
+    public float spaceoccupied = 2;
+    public LayerMask targetLayer;
+
+    GameObject upgrade;
     Transform _targetEnemy = null;
     Vector3 _lastTarget;
 
@@ -17,22 +20,15 @@ public class Tower : ProjectileWeapon
         InvokeRepeating("UpdateTargetEnemy", 0, .5F);
     }
 
-    // private void Update()
-    // {
-    //     Debug.Log(_shooting);
-    //     if (_targetEnemy == null) { return; }
-    // }
-
     void UpdateTargetEnemy()
     {
         //change to use OverlapSpheres to get all enemies inside the sphgere, not in the entire game
         //can also implement stuff like first or last enemy with this later on
 
-        // GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
-        Collider[] enemies = Physics.OverlapSphere(transform.position, range, enemyLayer);
+        Collider[] targets = Physics.OverlapSphere(transform.position, range, targetLayer);
         float _shortestDistance = Mathf.Infinity;
         GameObject _nearestEnemy = null;
-        foreach (Collider enemy in enemies)
+        foreach (Collider enemy in targets)
         {
             float _distanceToEnemy = Vector3.Distance(enemy.transform.position, this.transform.position);
             if (_distanceToEnemy < _shortestDistance)

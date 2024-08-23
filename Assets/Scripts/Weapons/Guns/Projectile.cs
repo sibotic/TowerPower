@@ -2,10 +2,19 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public float baseDamage, lifetime;
-    public float bounces = 0, bounceDamageMultiplier = 1.5f;
-    public float explosionRadius = 0, explosionDamage = 0;
+    [Header("General")]
     public LayerMask targetLayer;
+
+    [Header("Bullet")]
+    public float baseDamage;
+    public float lifetime;
+    public float bounces = 0;
+    public float bounceDamageMultiplier = 1.5f;
+
+    [Header("Explosion")]
+    public float explosionRadius = 0;
+    public float explosionDamage = 0;
+
 
     float _damage, _bulletSpeed, _startOfLife;
     bool _seeking;

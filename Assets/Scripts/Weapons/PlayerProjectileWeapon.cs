@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class PlayerProjectileWeapon : ProjectileWeapon
 {
+    [Header("Player Weapon")]
     public Camera cam;
     public bool allowButtonHold;
-    [SerializeField]
-    KeyCode fireKey = KeyCode.Mouse0;
-    KeyCode reloadKey = KeyCode.R;
+    [SerializeField] KeyCode fireKey = KeyCode.Mouse0;
+    [SerializeField] KeyCode reloadKey = KeyCode.R;
 
     public override (Vector3, Transform) GetTarget()
     {

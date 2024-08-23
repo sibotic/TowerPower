@@ -9,19 +9,31 @@ enum ReloadType
 
 public abstract class ProjectileWeapon : MonoBehaviour
 {
-    public GameObject bullet;
 
-    public float timeBetweenShooting, spread, reloadTime, timeBetweenShots, shootForce;
-    public float damageMultiplier = 1;
-    public int magazineSize, bulletsPerTap, ammoCapacity;
+    [Header("Projectile")]
+    public GameObject bullet;
     public bool homingProjectiles;
+    public float damageMultiplier = 1;
     public Transform[] attackpoints;
+
+    [Header("Ammo")]
+    [SerializeField] ReloadType reloadType;
+    public float reloadTime;
+    public int magazineSize;
+    public int bulletsPerTap;
+    public int ammoCapacity;
     public TMP_Text txtAmmo = null;
+
+    [Header("Shooting")]
+    public float timeBetweenShooting;
+    public float  spread;
+    public float  timeBetweenShots;
+    public float  shootForce;
+
 
     internal int _bulletsLeft, _bulletsShot, _ammoLeft, _currentAttackpoint;
     internal bool _shooting, _readyToShoot, _reloading, _resetShotInvoked, _infiniteAmmo, _infiniteMagazine;
 
-    [SerializeField] ReloadType reloadType;
     ProjectileWeapon _scriptReference;
     (float theory, float actual) _damageDealt;
 
@@ -181,5 +193,9 @@ public abstract class ProjectileWeapon : MonoBehaviour
     {
         _damageDealt.theory += values.theory;
         _damageDealt.actual += values.actual;
+    }
+
+    public (float theory, float actual) GetDamageDealt(){
+        return _damageDealt;
     }
 }
