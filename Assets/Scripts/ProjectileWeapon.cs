@@ -18,10 +18,13 @@ public abstract class ProjectileWeapon : MonoBehaviour
     public Transform[] attackpoints;
     public TMP_Text txtAmmo = null;
 
-    [SerializeField]
-    ReloadType reloadType;
     internal int _bulletsLeft, _bulletsShot, _ammoLeft, _currentAttackpoint;
     internal bool _shooting, _readyToShoot, _reloading, _resetShotInvoked, _infiniteAmmo, _infiniteMagazine;
+
+    [SerializeField] ReloadType reloadType;
+    ProjectileWeapon _scriptReference;
+    (float theory, float actual) _damageDealt;
+
 
 
     void Awake()
@@ -34,7 +37,7 @@ public abstract class ProjectileWeapon : MonoBehaviour
         {
             _infiniteAmmo = true;
         }
-
+        _scriptReference = gameObject.GetComponent<ProjectileWeapon>();
 
         _bulletsLeft = _infiniteMagazine ? 1 : magazineSize;
         _readyToShoot = true;
@@ -88,7 +91,9 @@ public abstract class ProjectileWeapon : MonoBehaviour
 
 
         GameObject currentBullet = Instantiate(bullet, attackpoints[_currentAttackpoint].position, Quaternion.identity);
-        currentBullet.GetComponent<Projectile>().ApplyDamageMultiplier(damageMultiplier);
+        Projectile projectileScript = currentBullet.GetComponent<Projectile>();
+        projectileScript.ApplyDamageMultiplier(damageMultiplier);
+        projectileScript.SetOrigin(_scriptReference);
 
         if (homingProjectiles)
         {
@@ -170,5 +175,11 @@ public abstract class ProjectileWeapon : MonoBehaviour
             txtAmmo.text = _reloading ? "Reloading .." : $"{_bulletsLeft / bulletsPerTap}/{magazineSize / bulletsPerTap} ({_ammoLeft})";
 
         }
+    }
+
+    public void AddDamageDealt((float theory, float actual) values)
+    {
+        _damageDealt.theory += values.theory;
+        _damageDealt.actual += values.actual;
     }
 }

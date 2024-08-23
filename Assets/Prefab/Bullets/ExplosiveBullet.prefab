@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5cbdead7211530f408c3951d9bd9fd55, type: 2}
+  - {fileID: 2100000, guid: f67ec6719bc04f94eabbd7077ceddf2e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 174047674454464206}
   - component: {fileID: 3756088595999374536}
   m_Layer: 10
-  m_Name: BasicBullet
+  m_Name: ExplosiveBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -339,7 +339,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.016509444, g: 0.060118422, b: 0.5, a: 1}
+      maxColor: {r: 0.5019608, g: 0.065329924, b: 0.015686275, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -4940,12 +4940,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de3de1884b70e8e479e82e611b5cf653, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseDamage: 5
+  baseDamage: 0
   lifetime: 5
   bounces: 0
   bounceDamageMultiplier: 0
-  explosionRadius: 0
-  explosionDamage: 0
+  explosionRadius: 5
+  explosionDamage: 5
   targetLayer:
     serializedVersion: 2
     m_Bits: 4096
