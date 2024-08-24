@@ -18,7 +18,8 @@ public class PlayerProjectileWeapon : ProjectileWeapon
         if (Physics.Raycast(ray, out hit))
         {
             targetPoint = hit.point;
-            if(homingProjectiles && hit.collider.gameObject.layer == 12){
+            if (homingProjectiles && hit.collider.gameObject.layer == 12)
+            {
                 targetToSeek = hit.transform;
             }
         }
@@ -41,7 +42,8 @@ public class PlayerProjectileWeapon : ProjectileWeapon
 
     public override void ManualReload()
     {
-        if (Input.GetKeyDown(reloadKey) && !_reloading && _bulletsLeft < magazineSize && !_infiniteMagazine && _ammoLeft > 0)// || _shooting && _bulletsLeft <= 0)
+        if ((Input.GetKeyDown(reloadKey) && !_reloading && _bulletsLeft < magazineSize && !_infiniteMagazine && _ammoLeft > 0)
+        || (_bulletsLeft <= 0 && _ammoLeft > 0 && !_reloading))
         {
             Reload();
         }

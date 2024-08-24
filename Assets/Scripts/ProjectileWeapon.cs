@@ -152,9 +152,9 @@ public abstract class ProjectileWeapon : MonoBehaviour
 
     void ReloadFinished()
     {
-        int reloadAmount = _ammoLeft - magazineSize < 0 ? _ammoLeft : magazineSize;
+        int reloadAmount = _ammoLeft - magazineSize - _bulletsLeft < 0 ? _ammoLeft : magazineSize - _bulletsLeft;
         _ammoLeft -= _infiniteAmmo ? 0 : reloadAmount;
-        _bulletsLeft = reloadAmount;
+        _bulletsLeft += reloadAmount;
         _reloading = false;
     }
 
