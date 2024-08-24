@@ -46,20 +46,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 6479960818442666905, guid: f49e4fb71d582a443b9cad1947f00946, type: 3}
-  timeBetweenShooting: 0.2
-  spread: 8
-  reloadTime: 2
-  timeBetweenShots: 0.2
-  shootForce: 20
+  homingProjectiles: 0
   damageMultiplier: 1
+  attackpoints: []
+  reloadType: 0
+  reloadTime: 1.2
   magazineSize: 24
   bulletsPerTap: 1
-  ammoCapacity: 5000
-  attackpoint: {fileID: 7139042677524638453}
-  reloadType: 0
+  ammoCapacity: 0
+  txtAmmo: {fileID: 0}
+  timeBetweenShooting: 0.2
+  spread: 1
+  timeBetweenShots: 0.2
+  shootForce: 10
   cam: {fileID: 0}
   allowButtonHold: 1
   fireKey: 323
+  reloadKey: 114
 --- !u!1 &7139042677524638452
 GameObject:
   m_ObjectHideFlags: 0
