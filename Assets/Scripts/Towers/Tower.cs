@@ -1,4 +1,4 @@
-using Palmmedia.ReportGenerator.Core.Parser.Analysis;
+using System.Linq;
 using UnityEngine;
 
 public class Tower : ProjectileWeapon
@@ -11,6 +11,7 @@ public class Tower : ProjectileWeapon
     public float spaceoccupied = 2;
     public float updateTarget = .5f;
     public LayerMask targetLayer;
+    [SerializeField] LayerMask[] _buildableLayers;
     [SerializeField] GameObject upgrade;
 
     Transform _targetEnemy = null;
@@ -96,5 +97,17 @@ public class Tower : ProjectileWeapon
             Destroy(this.gameObject);
         }
 
+    }
+
+    public bool CanBeBuildHere(LayerMask layer)
+    {
+        foreach (var buildableLayer in _buildableLayers)
+        {
+            if (buildableLayer.value == (1 << layer.value))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
