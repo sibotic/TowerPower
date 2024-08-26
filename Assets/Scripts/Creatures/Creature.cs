@@ -18,13 +18,13 @@ public class Creature : Health
         _currentWaypointIndex = 0;
         _target = Waypoints.GetWaypoint(_currentWaypointIndex);
         _distanceToTarget = Vector3.Distance(_target.position, transform.position);
-
+        _currentTargetMaxDistance = _distanceToTarget;
     }
 
     void Update()
     {
-        //use quadratic distance instead of real one
-        _distanceToTarget = Vector3.Distance(_target.position, transform.position);
+        _distanceToTarget = (_target.position - transform.position).sqrMagnitude;
+
     }
 
     void FixedUpdate()
@@ -38,7 +38,6 @@ public class Creature : Health
             MoveCreature();
         }
     }
-
     void MoveCreature()
     {
         Vector3 pos = Vector3.MoveTowards(this.transform.position, _target.position, moveSpeed / 10);
@@ -46,7 +45,7 @@ public class Creature : Health
         transform.LookAt(_target);
     }
 
-    void UpdateTarget() //TODO maybe this is called to often and needs a cooldown? / bool
+    void UpdateTarget()
     {
         //some logic to attack player
         Transform nextWaypoint = Waypoints.GetWaypoint(_currentWaypointIndex + 1);
@@ -71,7 +70,7 @@ public class Creature : Health
         }
         else
         {
-            return _currentWaypointIndex + _distanceToTarget / _currentTargetMaxDistance;
+            return _currentWaypointIndex + (1 - _distanceToTarget / _currentTargetMaxDistance);
         }
     }
 }
