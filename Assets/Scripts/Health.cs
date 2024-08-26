@@ -18,7 +18,7 @@ public abstract class Health : MonoBehaviour
     public (float theoryDamage, float actualDamage) TakeDamage(float amount){
         _health -= amount;
         
-        _healthBar.UpdateStatusBar(_health, maxHealth);
+        //_healthBar.UpdateStatusBar(_health, maxHealth);
 
         if (_health <= 0){
             _Die();
