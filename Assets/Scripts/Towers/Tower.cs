@@ -1,5 +1,17 @@
-using System.Linq;
 using UnityEngine;
+
+
+enum TargetType
+{
+    // First,
+    // Last,
+    Close,
+    Far
+    // Strong,
+    // Weak,
+    // Low, //HP
+    // High //HP
+}
 
 public class Tower : ProjectileWeapon
 {
@@ -11,6 +23,7 @@ public class Tower : ProjectileWeapon
     public float spaceoccupied = 2;
     public float updateTarget = .5f;
     public LayerMask targetLayer;
+    [SerializeField] TargetType _targetType = TargetType.Close;
     [SerializeField] LayerMask[] _buildableLayers;
     [SerializeField] GameObject upgrade;
 
@@ -26,22 +39,56 @@ public class Tower : ProjectileWeapon
     void UpdateTargetEnemy()
     {
         Collider[] targets = Physics.OverlapSphere(transform.position, range, targetLayer);
-        float _shortestDistance = Mathf.Infinity;
-        GameObject _nearestEnemy = null;
+        float _bestDistance;
+
+
+        switch (_targetType)
+        {
+            case TargetType.Close:
+                _bestDistance = Mathf.Infinity;
+                break;
+            case TargetType.Far:
+                _bestDistance = 0;
+                break;
+            default:
+                _bestDistance = 0;
+                break;
+        }
+
+
+        GameObject _bestEnemy = null;
+
         foreach (Collider enemy in targets)
         {
             float _distanceToEnemy = (enemy.transform.position - transform.position).sqrMagnitude;
-            if (_distanceToEnemy < _shortestDistance)
-            {
-                _shortestDistance = _distanceToEnemy;
-                _nearestEnemy = enemy.gameObject;
 
+            switch (_targetType)
+            {
+                case TargetType.Close:
+                    if (_distanceToEnemy < _bestDistance)
+                    {
+                        _bestDistance = _distanceToEnemy;
+                        _bestEnemy = enemy.gameObject;
+
+                    }
+                    break;
+                case TargetType.Far:
+                    if (_distanceToEnemy > _bestDistance)
+                    {
+                        _bestDistance = _distanceToEnemy;
+                        _bestEnemy = enemy.gameObject;
+
+                    }
+                    break;
             }
+
+
+
         }
 
-        if (_nearestEnemy != null)
+        if (_bestEnemy != null)
         {
-            _targetEnemy = _nearestEnemy.transform;            
+            _targetEnemy = _bestEnemy.transform;
         }
         else
         {
