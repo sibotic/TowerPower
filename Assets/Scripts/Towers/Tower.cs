@@ -42,6 +42,8 @@ public class Tower : ProjectileWeapon
         if (_nearestEnemy != null)
         {
             _targetEnemy = _nearestEnemy.transform;
+            if(_targetEnemy != null) {Debug.Log("Progress: " + _targetEnemy.GetComponentInParent<Creature>().GetProgress());}
+            
         }
         else
         {

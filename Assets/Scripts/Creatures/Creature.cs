@@ -5,29 +5,36 @@ public class Creature : Health
     public float moveSpeed = .5f;
     public float attackRange = 5; //for later use
 
-    Transform _target;
-    float _distanceToTarget;
+    [SerializeField] Transform _target;
+    float _distanceToTarget, _currentTargetMaxDistance;
     bool _playerInRange;
-    int _currentWaypoint = 0;
+    int _currentWaypointIndex;
 
     Rigidbody rb;
 
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        _target = Waypoints.GetWaypoint(_currentWaypoint);
+        _currentWaypointIndex = 0;
+        _target = Waypoints.GetWaypoint(_currentWaypointIndex);
+        _distanceToTarget = Vector3.Distance(_target.position, transform.position);
+
     }
 
     void Update()
     {
+        //use quadratic distance instead of real one
         _distanceToTarget = Vector3.Distance(_target.position, transform.position);
     }
 
     void FixedUpdate()
     {
-        if(_distanceToTarget < 0.4f || _playerInRange){
+        if (_distanceToTarget < 0.3f || _playerInRange)
+        {
             UpdateTarget();
-        }else{
+        }
+        else
+        {
             MoveCreature();
         }
     }
@@ -39,16 +46,32 @@ public class Creature : Health
         transform.LookAt(_target);
     }
 
-    void UpdateTarget(){
+    void UpdateTarget() //TODO maybe this is called to often and needs a cooldown? / bool
+    {
         //some logic to attack player
-        Transform nextWaypoint = Waypoints.GetWaypoint(_currentWaypoint+1);
-        if(nextWaypoint == null){
+        Transform nextWaypoint = Waypoints.GetWaypoint(_currentWaypointIndex + 1);
+        if (nextWaypoint == null)
+        {
             Destroy(this.gameObject);
-        }else{
-            _currentWaypoint++;
+        }
+        else
+        {
+            _currentWaypointIndex++;
             _target = nextWaypoint;
-
+            _currentTargetMaxDistance = Vector3.Distance(_target.position, transform.position);
         }
     }
 
+    public float GetProgress()
+    {
+        if (_distanceToTarget / _currentTargetMaxDistance > 1)
+        {
+            int wholeNumber = (int)(_distanceToTarget / _currentTargetMaxDistance);
+            return _currentWaypointIndex - (_distanceToTarget / _currentTargetMaxDistance - wholeNumber);
+        }
+        else
+        {
+            return _currentWaypointIndex + _distanceToTarget / _currentTargetMaxDistance;
+        }
+    }
 }
