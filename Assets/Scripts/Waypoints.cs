@@ -28,5 +28,4 @@ public class Waypoints : MonoBehaviour
             return null;
         }
     }
-
 }

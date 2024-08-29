@@ -8,14 +8,13 @@ public class Creature : Health
     [SerializeField] Transform _target;
     float _distanceToTarget, _currentTargetMaxDistance;
     bool _playerInRange;
-    int _currentWaypointIndex;
+    int _currentWaypointIndex = 0;
 
     Rigidbody rb;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        _currentWaypointIndex = 0;
         _target = Waypoints.GetWaypoint(_currentWaypointIndex);
         _distanceToTarget = Vector3.Distance(_target.position, transform.position);
         _currentTargetMaxDistance = _distanceToTarget;
@@ -24,7 +23,6 @@ public class Creature : Health
     void Update()
     {
         _distanceToTarget = (_target.position - transform.position).sqrMagnitude;
-
     }
 
     void FixedUpdate()
@@ -38,6 +36,7 @@ public class Creature : Health
             MoveCreature();
         }
     }
+
     void MoveCreature()
     {
         Vector3 pos = Vector3.MoveTowards(this.transform.position, _target.position, moveSpeed / 10);
@@ -57,20 +56,23 @@ public class Creature : Health
         {
             _currentWaypointIndex++;
             _target = nextWaypoint;
-            _currentTargetMaxDistance = Vector3.Distance(_target.position, transform.position);
+            _currentTargetMaxDistance = (_target.position - transform.position).sqrMagnitude;
         }
     }
 
     public float GetProgress()
     {
-        if (_distanceToTarget / _currentTargetMaxDistance > 1)
+        float progress;
+        float ratio = _distanceToTarget / _currentTargetMaxDistance;
+        if (ratio > 1)
         {
-            int wholeNumber = (int)(_distanceToTarget / _currentTargetMaxDistance);
-            return _currentWaypointIndex - (_distanceToTarget / _currentTargetMaxDistance - wholeNumber);
+            int wholeNumber = (int)ratio;
+            progress = _currentWaypointIndex - (ratio - wholeNumber);
         }
         else
         {
-            return _currentWaypointIndex + (1 - _distanceToTarget / _currentTargetMaxDistance);
+            progress = _currentWaypointIndex + (1 - ratio);
         }
+        return progress;
     }
 }

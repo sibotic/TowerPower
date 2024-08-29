@@ -35,4 +35,8 @@ public abstract class Health : MonoBehaviour
     void _Despawn(){
         Destroy(this.gameObject);
     }
+
+    public float GetCurrentHealth(){
+        return _health;
+    }
 }
