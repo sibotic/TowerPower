@@ -5,29 +5,34 @@ public class Creature : Health
     public float moveSpeed = .5f;
     public float attackRange = 5; //for later use
 
-    Transform _target;
-    float _distanceToTarget;
+    [SerializeField] Transform _target;
+    float _distanceToTarget, _currentTargetMaxDistance;
     bool _playerInRange;
-    int _currentWaypoint = 0;
+    int _currentWaypointIndex = 0;
 
     Rigidbody rb;
 
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        _target = Waypoints.GetWaypoint(_currentWaypoint);
+        _target = Waypoints.GetWaypoint(_currentWaypointIndex);
+        _distanceToTarget = Vector3.Distance(_target.position, transform.position);
+        _currentTargetMaxDistance = _distanceToTarget;
     }
 
     void Update()
     {
-        _distanceToTarget = Vector3.Distance(_target.position, transform.position);
+        _distanceToTarget = (_target.position - transform.position).sqrMagnitude;
     }
 
     void FixedUpdate()
     {
-        if(_distanceToTarget < 0.4f || _playerInRange){
+        if (_distanceToTarget < 0.3f || _playerInRange)
+        {
             UpdateTarget();
-        }else{
+        }
+        else
+        {
             MoveCreature();
         }
     }
@@ -39,16 +44,35 @@ public class Creature : Health
         transform.LookAt(_target);
     }
 
-    void UpdateTarget(){
+    void UpdateTarget()
+    {
         //some logic to attack player
-        Transform nextWaypoint = Waypoints.GetWaypoint(_currentWaypoint+1);
-        if(nextWaypoint == null){
+        Transform nextWaypoint = Waypoints.GetWaypoint(_currentWaypointIndex + 1);
+        if (nextWaypoint == null)
+        {
             Destroy(this.gameObject);
-        }else{
-            _currentWaypoint++;
+        }
+        else
+        {
+            _currentWaypointIndex++;
             _target = nextWaypoint;
-
+            _currentTargetMaxDistance = (_target.position - transform.position).sqrMagnitude;
         }
     }
 
+    public float GetProgress()
+    {
+        float progress;
+        float ratio = _distanceToTarget / _currentTargetMaxDistance;
+        if (ratio > 1)
+        {
+            int wholeNumber = (int)ratio;
+            progress = _currentWaypointIndex - (ratio - wholeNumber);
+        }
+        else
+        {
+            progress = _currentWaypointIndex + (1 - ratio);
+        }
+        return progress;
+    }
 }

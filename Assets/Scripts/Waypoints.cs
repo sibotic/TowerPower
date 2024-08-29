@@ -15,17 +15,17 @@ public class Waypoints : MonoBehaviour
         }
     }
 
-    public static Transform GetWaypoint(int index){
+    public static Transform GetWaypoint(int index)
+    {
         try
         {
-        return _waypoints[index];
-            
+            return _waypoints[index];
+
         }
         catch (System.Exception)
         {
-            
+
             return null;
         }
     }
-
 }

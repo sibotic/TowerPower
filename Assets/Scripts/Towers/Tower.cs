@@ -1,4 +1,4 @@
-using System.Linq;
+using System;
 using UnityEngine;
 
 public class Tower : ProjectileWeapon
@@ -9,8 +9,9 @@ public class Tower : ProjectileWeapon
     public float turnSpeed;
     public float cost;
     public float spaceoccupied = 2;
-    public float updateTarget = .5f;
     public LayerMask targetLayer;
+    [SerializeField] float _updateTargetInterval = .5f;
+    [SerializeField] TargetType _targetType = TargetType.First;
     [SerializeField] LayerMask[] _buildableLayers;
     [SerializeField] GameObject upgrade;
 
@@ -20,28 +21,146 @@ public class Tower : ProjectileWeapon
     private void Start()
     {
         _lastTarget = transform.position;
-        InvokeRepeating("UpdateTargetEnemy", 0, updateTarget);
+        InvokeRepeating("UpdateTargetEnemy", 0, _updateTargetInterval);
     }
 
     void UpdateTargetEnemy()
     {
-        Collider[] targets = Physics.OverlapSphere(transform.position, range, targetLayer);
-        float _shortestDistance = Mathf.Infinity;
-        GameObject _nearestEnemy = null;
-        foreach (Collider enemy in targets)
-        {
-            float _distanceToEnemy = (enemy.transform.position - transform.position).sqrMagnitude;
-            if (_distanceToEnemy < _shortestDistance)
-            {
-                _shortestDistance = _distanceToEnemy;
-                _nearestEnemy = enemy.gameObject;
+        Collider[] potentialTargets = Physics.OverlapSphere(transform.position, range, targetLayer);
+        float _comparingValue;
 
-            }
+        switch (_targetType)
+        {
+            case TargetType.Close:
+                _comparingValue = Mathf.Infinity;
+                break;
+            case TargetType.Far:
+                _comparingValue = 0;
+                break;
+            case TargetType.First:
+                _comparingValue = 0;
+                break;
+            case TargetType.Last:
+                _comparingValue = Mathf.Infinity;
+                break;
+            case TargetType.Slow:
+                _comparingValue = Mathf.Infinity;
+                break;
+            case TargetType.Fast:
+                _comparingValue = 0;
+                break;
+            case TargetType.Low:
+                _comparingValue = Mathf.Infinity;
+                break;
+            case TargetType.High:
+                _comparingValue = 0;
+                break;
+            default:
+                _comparingValue = 0;
+                break;
         }
 
-        if (_nearestEnemy != null)
+
+        GameObject _bestEnemy = null;
+
+        foreach (Collider enemy in potentialTargets)
         {
-            _targetEnemy = _nearestEnemy.transform;
+            float _distanceToEnemy;
+            float _progressOfEnemy;
+            float _healthOfEnemy;
+            float _speedOfEnemy;
+            try
+            {
+            switch (_targetType)
+            {
+                case TargetType.Close:
+                    _distanceToEnemy = (enemy.transform.position - transform.position).sqrMagnitude;
+                    if (_distanceToEnemy < _comparingValue)
+                    {
+                        _comparingValue = _distanceToEnemy;
+                        _bestEnemy = enemy.gameObject;
+
+                    }
+                    break;
+                case TargetType.Far:
+                    _distanceToEnemy = (enemy.transform.position - transform.position).sqrMagnitude;
+                    if (_distanceToEnemy > _comparingValue)
+                    {
+                        _comparingValue = _distanceToEnemy;
+                        _bestEnemy = enemy.gameObject;
+
+                    }
+                    break;
+                case TargetType.First:
+                    _progressOfEnemy = enemy.gameObject.GetComponentInParent<Creature>().GetProgress();
+                    if (_progressOfEnemy > _comparingValue)
+                    {
+                        _comparingValue = _progressOfEnemy;
+                        _bestEnemy = enemy.gameObject;
+
+                    }
+                    break;
+                case TargetType.Last:
+                    _progressOfEnemy = enemy.gameObject.GetComponentInParent<Creature>().GetProgress();
+                    if (_progressOfEnemy < _comparingValue)
+                    {
+                        _comparingValue = _progressOfEnemy;
+                        _bestEnemy = enemy.gameObject;
+
+                    }
+                    break;
+                case TargetType.Slow:
+                    _speedOfEnemy = enemy.gameObject.GetComponentInParent<Creature>().moveSpeed;
+                    if (_speedOfEnemy < _comparingValue)
+                    {
+                        _comparingValue = _speedOfEnemy;
+                        _bestEnemy = enemy.gameObject;
+
+                    }
+                    break;
+                case TargetType.Fast:
+                    _speedOfEnemy = enemy.gameObject.GetComponentInParent<Creature>().moveSpeed;
+                    if (_speedOfEnemy > _comparingValue)
+                    {
+                        _comparingValue = _speedOfEnemy;
+                        _bestEnemy = enemy.gameObject;
+
+                    }
+                    break;
+                case TargetType.Low:
+                    _healthOfEnemy = enemy.gameObject.GetComponentInParent<Creature>().GetCurrentHealth();
+                    if (_healthOfEnemy < _comparingValue)
+                    {
+                        _comparingValue = _healthOfEnemy;
+                        _bestEnemy = enemy.gameObject;
+
+                    }
+                    break;
+                case TargetType.High:
+                    _healthOfEnemy = enemy.gameObject.GetComponentInParent<Creature>().GetCurrentHealth();
+                    if (_healthOfEnemy > _comparingValue)
+                    {
+                        _comparingValue = _healthOfEnemy;
+                        _bestEnemy = enemy.gameObject;
+
+                    }
+                    break;
+            }
+
+            }
+            catch (System.Exception)
+            {
+                Debug.Log("Issue updating Target!" );
+            }
+
+
+
+        }
+
+
+        if (_bestEnemy != null)
+        {
+            _targetEnemy = _bestEnemy.transform;
         }
         else
         {
