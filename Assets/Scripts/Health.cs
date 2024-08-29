@@ -15,28 +15,32 @@ public abstract class Health : MonoBehaviour
         _healthBar = GetComponent<FloatingHealthBar>();
     }
 
-    public (float theoryDamage, float actualDamage) TakeDamage(float amount){
+    public (float theoryDamage, float actualDamage) TakeDamage(float amount)
+    {
         _health -= amount;
-        
-        //_healthBar.UpdateStatusBar(_health, maxHealth);
+        _healthBar.UpdateStatusBar(_health, maxHealth);
 
-        if (_health <= 0){
+        if (_health <= 0)
+        {
             _Die();
         }
         //if resistances are implemented, this can be used to track dealt damage
         return (amount, amount);
     }
 
-    void _Die(){
+    void _Die()
+    {
         GoldManager.AddGold(goldDropped);
         Invoke("_Despawn", 0f);
     }
 
-    void _Despawn(){
+    void _Despawn()
+    {
         Destroy(this.gameObject);
     }
 
-    public float GetCurrentHealth(){
+    public float GetCurrentHealth()
+    {
         return _health;
     }
 }

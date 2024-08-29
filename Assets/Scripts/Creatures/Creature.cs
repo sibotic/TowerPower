@@ -12,7 +12,7 @@ public class Creature : Health
 
     Rigidbody rb;
 
-    void Awake()
+    void Start()
     {
         rb = GetComponent<Rigidbody>();
         _target = Waypoints.GetWaypoint(_currentWaypointIndex);
