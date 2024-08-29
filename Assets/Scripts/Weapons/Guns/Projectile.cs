@@ -43,7 +43,12 @@ public class Projectile : MonoBehaviour
             if (collision.gameObject.TryGetComponent<Creature>(out Creature creature))
             {
                 (float, float) damageDealt = creature.TakeDamage(_damage);
-                _origin.AddDamageDealt(damageDealt);
+                if (_origin != null)
+                {
+                    _origin.AddDamageDealt(damageDealt);
+
+                }
+
             }
         }
 
@@ -171,4 +176,5 @@ public class Projectile : MonoBehaviour
     {
         targetLayer = newTargetLayer;
     }
+
 }
