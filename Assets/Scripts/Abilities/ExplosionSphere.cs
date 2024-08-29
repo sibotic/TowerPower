@@ -3,12 +3,12 @@ using UnityEngine;
 public class ExplosionSphere : Ability
 {
     private void Update() {
-        if(Input.GetKeyDown(KeyCode.Alpha1)) {
-            Trigger();
+        if(Input.GetKeyDown(KeyCode.Alpha2) && _allowedToCast ) {
+            Cast();
         }
     }
 
-    public override void Trigger(){
+    internal override void Behaviour(){
         Collider[] colliders = Physics.OverlapSphere(transform.position, range, targetLayer);
         foreach(Collider collider in colliders) {
             try

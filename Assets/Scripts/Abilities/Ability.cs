@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class Ability : MonoBehaviour
@@ -12,9 +11,10 @@ public abstract class Ability : MonoBehaviour
     internal float _nextAllowedCast;
     internal bool _allowedToCast = true;
 
-    public abstract void Trigger();
+    internal abstract void Behaviour();
 
     internal void Cast(){
+        Behaviour();
         _nextAllowedCast = Time.time + cooldownTime;
         _allowedToCast = false;
         Invoke("AllowedToCast", cooldownTime);

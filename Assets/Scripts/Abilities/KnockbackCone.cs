@@ -8,11 +8,10 @@ public class KnockbackCone : Ability
         if (Input.GetKeyDown(KeyCode.Alpha1) && _allowedToCast)
         {
             Cast();
-            Trigger();
         }
     }
 
-    public override void Trigger()
+    internal override void Behaviour()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position + transform.forward * range / 2, range, targetLayer);
         foreach (Collider collider in colliders)
