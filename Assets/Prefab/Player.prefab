@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4866772c63ba4be4e92597e82534a094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interact: 101
+  buildKey: 101
   cam: {fileID: 0}
   towerToBuild: {fileID: 2089609875738231070, guid: 293d5818cebba9b46b39f96959630da2, type: 3}
   positionOffset: {x: 0, y: 1, z: 0}
@@ -144,7 +144,7 @@ GameObject:
   - component: {fileID: 3684292077980815508}
   m_Layer: 0
   m_Name: Capsule
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

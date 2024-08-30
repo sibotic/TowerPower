@@ -364,6 +364,7 @@ GameObject:
   - component: {fileID: 6253652745356381063}
   - component: {fileID: 6253652745356381062}
   - component: {fileID: 116866540144342224}
+  - component: {fileID: -2000870776301042568}
   m_Layer: 12
   m_Name: Creature 02
   m_TagString: Enemy
@@ -420,6 +421,7 @@ MonoBehaviour:
   goldDropped: 200
   moveSpeed: 0.5
   attackRange: 5
+  _target: {fileID: 0}
 --- !u!114 &116866540144342224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -435,6 +437,25 @@ MonoBehaviour:
   _cam: {fileID: 0}
   _target: {fileID: 0}
   _hideDelay: 2
+--- !u!114 &-2000870776301042568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6253652745356381113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf87b055fb5c6c741b04a58bc482844c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ressourcePrefab: {fileID: 34333114741350302, guid: 9ef4fcd867c8a044099a12b542acfd06, type: 3}
+  lootExplosionForce: 2
+  dropRateMultiplier: 1
+  dropTable:
+  - {fileID: 11400000, guid: a9e6c223b2cd4e54bb4705fb73d0d80d, type: 2}
+  - {fileID: 11400000, guid: f093ac382ce8ade4c82868e8ddf0c189, type: 2}
+  - {fileID: 11400000, guid: f093ac382ce8ade4c82868e8ddf0c189, type: 2}
 --- !u!1 &8637087409904253791
 GameObject:
   m_ObjectHideFlags: 0
