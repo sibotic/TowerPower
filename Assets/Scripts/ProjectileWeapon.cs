@@ -198,4 +198,14 @@ public abstract class ProjectileWeapon : MonoBehaviour
     public (float theory, float actual) GetDamageDealt(){
         return _damageDealt;
     }
+
+    public bool RefillAmmo(int amountOfMagazines){
+        if(_ammoLeft >= ammoCapacity){return false;}
+
+
+        _ammoLeft += amountOfMagazines * magazineSize;
+        if(_ammoLeft > ammoCapacity){_ammoLeft = ammoCapacity;}
+
+        return true;
+    }
 }

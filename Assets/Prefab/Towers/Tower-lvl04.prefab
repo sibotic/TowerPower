@@ -69,10 +69,11 @@ MonoBehaviour:
   turnSpeed: 2
   cost: 1200
   spaceoccupied: 8
-  updateTarget: 0.5
   targetLayer:
     serializedVersion: 2
     m_Bits: 4096
+  _updateTargetInterval: 0.5
+  _targetType: 0
   _buildableLayers:
   - serializedVersion: 2
     m_Bits: 128
