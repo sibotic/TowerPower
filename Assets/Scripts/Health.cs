@@ -4,7 +4,6 @@ public abstract class Health : MonoBehaviour
 {
 
     public float maxHealth = 10f;
-    public float goldDropped = 50f;
     float _health;
     FloatingHealthBar _healthBar;
 
@@ -30,7 +29,6 @@ public abstract class Health : MonoBehaviour
 
     void _Die()
     {
-        GoldManager.AddGold(goldDropped);
         Invoke("_Despawn", 0f);
     }
 
