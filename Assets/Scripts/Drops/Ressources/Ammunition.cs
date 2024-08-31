@@ -6,7 +6,11 @@ public class Ammunition : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            ProjectileWeapon weapon = other.gameObject.GetComponentInChildren<ProjectileWeapon>();
+            weapon.RefillAmmo(5);
             Destroy(this.gameObject);
+
+
         }
     }
 }

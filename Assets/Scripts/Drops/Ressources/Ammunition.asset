@@ -16,4 +16,4 @@ MonoBehaviour:
   description: Used to shoot
   model: {fileID: 761745618930175524, guid: 57c3200ed419753469fa3420eca7e9d5, type: 3}
   dropchance: 5
-  pickupRadius: 10
+  pickupRadius: 100

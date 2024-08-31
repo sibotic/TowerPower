@@ -8,6 +8,8 @@ public class RessourceBag : MonoBehaviour
     public float lootExplosionForce = 3;
     public float dropRateMultiplier = 1;
 
+    float _dropOffset = 1;
+
     public List<Ressource> dropTable = new List<Ressource>();
 
     List<Ressource> GetRessourcesToDrop()
@@ -31,8 +33,8 @@ public class RessourceBag : MonoBehaviour
 
         foreach (Ressource item in itemDrops)
         {
-            GameObject drop = Instantiate(ressourcePrefab, spawnOrigin, Quaternion.identity);
-            GameObject itemModel = Instantiate(item.model, spawnOrigin, Quaternion.identity);
+            GameObject drop = Instantiate(ressourcePrefab, GetRandomOffset(spawnOrigin), Quaternion.identity);
+            GameObject itemModel = Instantiate(item.model, drop.transform.position, Quaternion.identity);
             itemModel.transform.parent = drop.transform;
             Vector3 direction = new Vector3(Random.Range(0f, .4f), 1, Random.Range(0f, .4f));
             drop.GetComponent<SphereCollider>().radius = item.pickupRadius;
@@ -43,6 +45,13 @@ public class RessourceBag : MonoBehaviour
     private void OnDestroy()
     {
         DropLoot(transform.position);
+    }
+
+    Vector3 GetRandomOffset(Vector3 original) {
+        float xSpread = Random.Range(-_dropOffset, _dropOffset);
+        float zSpread = Random.Range(-_dropOffset, _dropOffset);
+
+        return original + new Vector3(xSpread, 0 , zSpread);
     }
 
 }
