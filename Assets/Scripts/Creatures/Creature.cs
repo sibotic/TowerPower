@@ -10,7 +10,17 @@ public class Creature : Health
     bool _playerInRange;
     int _currentWaypointIndex = 0;
 
+    [Header("Runtime Sets")]
+    [SerializeField] RuntimeSet<Creature> _activeEnemies;
     Rigidbody rb;
+
+    private void OnEnable() {
+        _activeEnemies.Add(this);
+    }
+
+    private void OnDisable() {
+        _activeEnemies.Remove(this);
+    }
 
     void Start()
     {

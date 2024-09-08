@@ -418,10 +418,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1500
-  goldDropped: 500
   moveSpeed: 0.5
   attackRange: 5
   _target: {fileID: 0}
+  _activeEnemies: {fileID: 11400000, guid: 6f84857889cc86d4f85b838905f2933c, type: 2}
 --- !u!114 &116866540144342224
 MonoBehaviour:
   m_ObjectHideFlags: 0
