@@ -1,23 +1,23 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public abstract class Health : MonoBehaviour
 {
 
     public float maxHealth = 10f;
     float _health;
-    FloatingHealthBar _healthBar;
+    public UnityEvent<float, float> HealthChanged;
 
 
     void Awake()
     {
         _health = maxHealth;
-        _healthBar = GetComponent<FloatingHealthBar>();
     }
 
     public (float theoryDamage, float actualDamage) TakeDamage(float amount)
     {
         _health -= amount;
-        _healthBar.UpdateStatusBar(_health, maxHealth);
+        HealthChanged.Invoke(_health, maxHealth);
 
         if (_health <= 0)
         {
