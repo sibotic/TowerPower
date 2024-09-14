@@ -112,9 +112,9 @@ public abstract class ProjectileWeapon : MonoBehaviour
             currentBullet.GetComponent<Projectile>().Seek(target.Item2, shootForce);
         }
 
-        currentBullet.transform.forward = direction.normalized;
 
         currentBullet.GetComponent<Rigidbody>().AddForce(direction.normalized * (homingProjectiles&&target.Item2!=null ? 0 : shootForce), ForceMode.Impulse);
+        currentBullet.transform.forward = direction.normalized;
 
 
         if (!_infiniteMagazine)
