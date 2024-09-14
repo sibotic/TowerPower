@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Tower : ProjectileWeapon
@@ -15,8 +14,19 @@ public class Tower : ProjectileWeapon
     [SerializeField] LayerMask[] _buildableLayers;
     [SerializeField] GameObject upgrade;
 
+    [Header("Runtime Sets")]
+    [SerializeField] TowerRuntimeSet _activeTowers;
+
     Transform _targetEnemy = null;
     Vector3 _lastTarget;
+
+    private void OnEnable() {
+        _activeTowers.Add(this);
+    }
+
+    private void OnDisable() {
+        _activeTowers.Remove(this);
+    }
 
     private void Start()
     {

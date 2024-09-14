@@ -74,6 +74,7 @@ MonoBehaviour:
   - serializedVersion: 2
     m_Bits: 128
   upgrade: {fileID: 2089609875738231070, guid: 1697a3410ecbf42478ce18476ca0f6ee, type: 3}
+  _activeTowers: {fileID: 11400000, guid: 283b2d82cc9d28b48ac027c54e453251, type: 2}
 --- !u!1 &2089609875789672299
 GameObject:
   m_ObjectHideFlags: 0
