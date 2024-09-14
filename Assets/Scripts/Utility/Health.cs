@@ -6,8 +6,7 @@ public abstract class Health : MonoBehaviour
 
     public float maxHealth = 10f;
     float _health;
-    public UnityEvent<float, float> HealthChanged;
-
+    [SerializeField] FloatingStatusBar _healthBar;
 
     void Awake()
     {
@@ -17,8 +16,7 @@ public abstract class Health : MonoBehaviour
     public (float theoryDamage, float actualDamage) TakeDamage(float amount)
     {
         _health -= amount;
-        HealthChanged.Invoke(_health, maxHealth);
-
+        _healthBar?.UpdateStatusBar(_health, maxHealth);
         if (_health <= 0)
         {
             _Die();
@@ -40,5 +38,10 @@ public abstract class Health : MonoBehaviour
     public float GetCurrentHealth()
     {
         return _health;
+    }
+
+    public void HealthChanged(float currentHealth, float maxHealth)
+    {
+
     }
 }

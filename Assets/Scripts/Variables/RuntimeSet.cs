@@ -8,12 +8,12 @@ public abstract class RuntimeSet<T> : ScriptableObject
 
     public void Add(T t){
         if(!Items.Contains(t)){Items.Add(t);}
-        if(ChangeEvent != null){ChangeEvent.Raise(Items.Count);}
+        if(ChangeEvent != null){ChangeEvent.Raise();}
     }
 
     public void Remove(T t){
         if(Items.Contains(t)){Items.Remove(t);}
-        if(ChangeEvent != null){ChangeEvent.Raise(Items);}
+        if(ChangeEvent != null){ChangeEvent.Raise();}
     }
 
 }

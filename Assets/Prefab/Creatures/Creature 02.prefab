@@ -418,9 +418,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 225
-  HealthChanged:
-    m_PersistentCalls:
-      m_Calls: []
+  _healthBar: {fileID: -793698915480901332}
   moveSpeed: 0.5
   attackRange: 5
   _target: {fileID: 0}
@@ -458,7 +456,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _targetPosition: {fileID: 0}
   _hideDelay: 2
-  _barColor: {r: 0, g: 1, b: 1, a: 1}
+  _background: {fileID: 11400000, guid: fac2cd22f8862ab478d25e4605677adb, type: 2}
+  _foreground: {fileID: 11400000, guid: f0f67a07336aa284f920cce9b2482a2b, type: 2}
 --- !u!1 &8637087409904253791
 GameObject:
   m_ObjectHideFlags: 0

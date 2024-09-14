@@ -10,8 +10,7 @@ public class EnemyCountUi : MonoBehaviour
         text.text = $"Enemies left: {set.Items.Count}";
     }
 
-    public void CountChanged(CustomGameEvent data){
-        Debug.Log(data);
+    public void CountChanged(){
         text.text = $"Enemies left: {set.Items.Count}";
     }
 }
