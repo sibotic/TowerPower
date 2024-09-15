@@ -6,7 +6,7 @@ public class CloudWeapon : ProjectileWeapon
 
 
 
-    public override (Vector3, Transform) GetTarget()
+    internal override (Vector3, Transform) GetTarget()
     {
         Vector3 direction = _target.position - GetNextAttackPoint().position;
         return (direction, null);

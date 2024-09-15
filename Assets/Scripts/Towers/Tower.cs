@@ -178,7 +178,7 @@ public class Tower : ProjectileWeapon
         }
     }
 
-    public override (Vector3, Transform) GetTarget()
+    internal override (Vector3, Transform) GetTarget()
     {
         Vector3 target;
         try

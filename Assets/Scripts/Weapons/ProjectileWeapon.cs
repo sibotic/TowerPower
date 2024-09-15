@@ -136,7 +136,7 @@ public abstract class ProjectileWeapon : MonoBehaviour
         }
     }
 
-    public abstract (Vector3, Transform) GetTarget();
+    internal abstract (Vector3, Transform) GetTarget();
 
     void ResetShot()
     {
@@ -208,4 +208,5 @@ public abstract class ProjectileWeapon : MonoBehaviour
 
         return true;
     }
+
 }

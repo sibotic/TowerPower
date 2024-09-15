@@ -8,7 +8,7 @@ public class PlayerProjectileWeapon : ProjectileWeapon
     [SerializeField] KeyCode fireKey = KeyCode.Mouse0;
     [SerializeField] KeyCode reloadKey = KeyCode.R;
 
-    public override (Vector3, Transform) GetTarget()
+    internal override (Vector3, Transform) GetTarget()
     {
         Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         RaycastHit hit;
@@ -47,5 +47,20 @@ public class PlayerProjectileWeapon : ProjectileWeapon
         {
             Reload();
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = new Color(1, 1, 0, .2f);
+
+        Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit))
+        {
+            Gizmos.DrawSphere(hit.point, .5f);
+        }
+
+        Gizmos.DrawRay(transform.position, ray.direction * 50);
+
     }
 }

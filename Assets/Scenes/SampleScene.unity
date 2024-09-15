@@ -1616,6 +1616,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 134441453}
     - target: {fileID: 7139042676972845647, guid: 2eb31e075821d014e8569cb340c93a58, type: 3}
+      propertyPath: spread
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7139042676972845647, guid: 2eb31e075821d014e8569cb340c93a58, type: 3}
       propertyPath: txtAmmo
       value: 
       objectReference: {fileID: 1468222197}
@@ -1633,7 +1637,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7139042676972845647, guid: 2eb31e075821d014e8569cb340c93a58, type: 3}
       propertyPath: magazineSize
-      value: 24
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7139042676972845647, guid: 2eb31e075821d014e8569cb340c93a58, type: 3}
       propertyPath: damageMultiplier
@@ -2729,6 +2733,10 @@ PrefabInstance:
     - target: {fileID: 2089609875738231070, guid: 1697a3410ecbf42478ce18476ca0f6ee, type: 3}
       propertyPath: m_Name
       value: Tower-lvl04
+      objectReference: {fileID: 0}
+    - target: {fileID: 2089609875738231070, guid: 1697a3410ecbf42478ce18476ca0f6ee, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2089609875738231071, guid: 1697a3410ecbf42478ce18476ca0f6ee, type: 3}
       propertyPath: bullet
