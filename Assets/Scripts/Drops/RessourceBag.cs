@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class RessourceBag : MonoBehaviour
 {
-    public GameObject ressourcePrefab;
     [Range(0f, 25)]
     public float lootExplosionForce = 3;
     public float dropRateMultiplier = 1;
@@ -33,10 +32,10 @@ public class RessourceBag : MonoBehaviour
 
         foreach (Ressource item in itemDrops)
         {
-            GameObject drop = Instantiate(ressourcePrefab, GetRandomOffset(spawnOrigin), Quaternion.identity);
-            GameObject itemModel = Instantiate(item.model, drop.transform.position, Quaternion.identity);
-            itemModel.transform.parent = drop.transform;
-            Vector3 direction = new Vector3(Random.Range(0f, .4f), 1, Random.Range(0f, .4f));
+            GameObject drop = Instantiate(item.model, GetRandomOffset(spawnOrigin), Quaternion.identity);
+            // GameObject ressourceModel = Instantiate(item.model, drop.transform.position, Quaternion.identity);
+            // ressourceModel.transform.parent = drop.transform;
+            //Vector3 direction = new Vector3(Random.Range(0f, .4f), 1, Random.Range(0f, .4f));
             drop.GetComponent<SphereCollider>().radius = item.pickupRadius;
 
         }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Ammunition : MonoBehaviour
+public class Ammunition : RessourcePrefab
 {
     private void OnCollisionEnter(Collision other)
     {

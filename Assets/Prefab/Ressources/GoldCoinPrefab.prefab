@@ -108,10 +108,10 @@ GameObject:
   - component: {fileID: 40178913507842401}
   - component: {fileID: 5984876034454799200}
   - component: {fileID: 4567386702196169501}
-  - component: {fileID: 3435771240588138006}
   - component: {fileID: 1538651917413361082}
   - component: {fileID: 6227599308894342649}
   - component: {fileID: 7070774751471690099}
+  - component: {fileID: 6223367440674631139}
   m_Layer: 8
   m_Name: GoldCoinPrefab
   m_TagString: Untagged
@@ -4914,18 +4914,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &3435771240588138006
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 761745618930175524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc2bd1d28e89195479f9c56262a3ef6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!96 &1538651917413361082
 TrailRenderer:
   serializedVersion: 2
@@ -5046,6 +5034,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7c1059f5f61cb642a5472d3f169447e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _moveToPlayerSpeed: 100
   _amount: 20
 --- !u!54 &7070774751471690099
 Rigidbody:
@@ -5063,3 +5052,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!135 &6223367440674631139
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761745618930175524}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}
