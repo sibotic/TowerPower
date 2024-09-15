@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 3435771240588138006}
   - component: {fileID: 1538651917413361082}
   - component: {fileID: 1538209997620032017}
+  - component: {fileID: 8703041657486349308}
   m_Layer: 8
   m_Name: AmmunitionPrefab
   m_TagString: Untagged
@@ -974,7 +975,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 3
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -4931,6 +4932,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc2bd1d28e89195479f9c56262a3ef6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _moveToPlayerSpeed: 100
 --- !u!96 &1538651917413361082
 TrailRenderer:
   serializedVersion: 2
@@ -5055,6 +5057,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!135 &8703041657486349308
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761745618930175524}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1729240163146090776
 GameObject:
   m_ObjectHideFlags: 0

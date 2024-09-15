@@ -15,7 +15,7 @@ public class PlayerProjectileWeapon : ProjectileWeapon
         Transform targetToSeek = null;
 
         Vector3 targetPoint;
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~0, QueryTriggerInteraction.Ignore))
         {
             targetPoint = hit.point;
             if (homingProjectiles && hit.collider.gameObject.layer == 12)
@@ -49,18 +49,18 @@ public class PlayerProjectileWeapon : ProjectileWeapon
         }
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = new Color(1, 1, 0, .2f);
+    // private void OnDrawGizmos()
+    // {
+    //     Gizmos.color = new Color(1, 1, 0, .2f);
 
-        Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
-        {
-            Gizmos.DrawSphere(hit.point, .5f);
-        }
+    //     Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+    //     RaycastHit hit;
+    //     if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~0, QueryTriggerInteraction.Ignore))
+    //     {
+    //         Gizmos.DrawSphere(hit.point, .5f);
+    //     }
 
-        Gizmos.DrawRay(transform.position, ray.direction * 50);
+    //     Gizmos.DrawRay(transform.position, ray.direction * 50);
 
-    }
+    // }
 }

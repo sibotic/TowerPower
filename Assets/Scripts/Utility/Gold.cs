@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Gold : MonoBehaviour
+public class Gold : RessourcePrefab
 {
     [SerializeField] float _amount;
     private void OnCollisionEnter(Collision other)
