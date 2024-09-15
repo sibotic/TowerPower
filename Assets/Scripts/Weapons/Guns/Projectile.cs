@@ -30,6 +30,11 @@ public class Projectile : MonoBehaviour
     public float explosionRadius = 0;
     public float explosionDamage = 0;
 
+    [Header("Status Effects")]
+    public StatusEffectData statusEffectData;
+    public int stacksPerHit = 1;
+    float _procChance = 1;
+
 
     private void Start()
     {
@@ -40,9 +45,11 @@ public class Projectile : MonoBehaviour
     {
         if ((1 << collision.gameObject.layer) == targetLayer.value) //1 << converts the layerMask index into a LayerMask (bitmap)
         {
-            if (collision.gameObject.TryGetComponent<Creature>(out Creature creature))
+            if (collision.gameObject.TryGetComponent<Health>(out Health health))
             {
-                (float, float) damageDealt = creature.TakeDamage(_damage);
+                (float, float) damageDealt = health.TakeDamage(_damage);
+                if(statusEffectData != null){health.AddEffect(statusEffectData, stacksPerHit);}
+                
                 if (_origin != null)
                 {
                     _origin.AddDamageDealt(damageDealt);
