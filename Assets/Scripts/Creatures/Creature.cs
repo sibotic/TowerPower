@@ -30,8 +30,9 @@ public class Creature : Health
         _currentTargetMaxDistance = _distanceToTarget;
     }
 
-    void Update()
+    new void Update()
     {
+        base.Update();
         _distanceToTarget = (_target.position - transform.position).sqrMagnitude;
     }
 

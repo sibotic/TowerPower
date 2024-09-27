@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bbcdaa8becbbe44cb096c0b853a049e, type: 3}
+  m_Name: BasicPoison
+  m_EditorClassIdentifier: 
+  Name: Poison
+  Description: Hurts
+  DOTAmount: 0.5
+  TickSpeed: 1
+  Duration: 2
+  MaxStacks: 100
+  ParticleEffect: {fileID: 8991678707125232026, guid: 123f968b9ab20004d9abd2abda38a171, type: 3}

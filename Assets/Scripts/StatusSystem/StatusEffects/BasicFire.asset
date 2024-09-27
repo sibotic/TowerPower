@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c00f1be52e18231498c9709f1dbd2aa7, type: 3}
+  m_Name: BasicFire
+  m_EditorClassIdentifier: 
+  Name: Fire
+  Description: Burns
+  DOTAmount: 7.5
+  TickSpeed: 0.5
+  Duration: 5
+  MaxStacks: 10
+  ParticleEffect: {fileID: 8991678707125232026, guid: efbfaf9fe14616141b1fde0c56f5854d, type: 3}
