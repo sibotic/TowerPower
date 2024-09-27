@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f67ec6719bc04f94eabbd7077ceddf2e, type: 2}
+  - {fileID: 2100000, guid: 5d0505ae60c8b0b468c277d41e1a469e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 174047674454464206}
   - component: {fileID: 3756088595999374536}
   m_Layer: 10
-  m_Name: ExplosivePoisonBullet
+  m_Name: FireBullets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -339,7 +339,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.5019608, g: 0.065329924, b: 0.015686275, a: 1}
+      maxColor: {r: 0.8530045, g: 0.9245283, b: 0.18752226, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -4950,5 +4950,5 @@ MonoBehaviour:
   hoamingRadius: 10
   explosionRadius: 5
   explosionDamage: 5
-  statusEffect: {fileID: 11400000, guid: f01dc31a0238e5049aa9ac48bea9ca35, type: 2}
-  stacksPerHit: 5
+  statusEffect: {fileID: 11400000, guid: cc8c12858f74d564a9405d51d33c077e, type: 2}
+  stacksPerHit: 1

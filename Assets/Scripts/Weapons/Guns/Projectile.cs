@@ -31,7 +31,7 @@ public class Projectile : MonoBehaviour
     public float explosionDamage = 0;
 
     [Header("Status Effects")]
-    public StatusEffectData statusEffectData;
+    public StatusEffect statusEffect;
     public int stacksPerHit = 1;
     float _procChance = 1;
 
@@ -48,7 +48,7 @@ public class Projectile : MonoBehaviour
             if (collision.gameObject.TryGetComponent<Health>(out Health health))
             {
                 (float, float) damageDealt = health.TakeDamage(_damage);
-                if(statusEffectData != null){health.AddEffect(statusEffectData, stacksPerHit);}
+                if(statusEffect != null){health.AddEffect(statusEffect, stacksPerHit);}
                 
                 if (_origin != null)
                 {
@@ -163,7 +163,9 @@ public class Projectile : MonoBehaviour
         {
             try
             {
-                (float, float) damageDealt = collision.GetComponentInParent<Creature>().TakeDamage(explosionDamage);
+                Creature creature = collision.GetComponentInParent<Creature>();
+                (float, float) damageDealt = creature.TakeDamage(explosionDamage);
+                if(statusEffect != null){creature.AddEffect(statusEffect, stacksPerHit);}
 
                 _origin.AddDamageDealt(damageDealt);
             }

@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3c55c9474c6875419b037e890ad8953, type: 3}
-  m_Name: Poison
+  m_Script: {fileID: 11500000, guid: 0bbcdaa8becbbe44cb096c0b853a049e, type: 3}
+  m_Name: BasicPoison
   m_EditorClassIdentifier: 
-  Name: 
-  Description: 
-  DOTAmount: 0
+  Name: Poison
+  Description: Hurts
+  DOTAmount: 0.5
   TickSpeed: 1
-  Duration: 5
-  MaxStacks: 10
-  particles: {fileID: 0}
+  Duration: 2
+  MaxStacks: 100
+  ParticleEffect: {fileID: 8991678707125232026, guid: 123f968b9ab20004d9abd2abda38a171, type: 3}

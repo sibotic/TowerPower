@@ -8,11 +8,16 @@ public abstract class Health : MonoBehaviour, IEffectable
     float _health;
     [SerializeField] FloatingStatusBar _healthBar;
 
-    Dictionary<StatusEffectData, int> _statusEffects = new Dictionary<StatusEffectData, int>();
+    Dictionary<StatusEffect, StatusEffectData> _statusEffects = new Dictionary<StatusEffect, StatusEffectData>();
 
     void Awake()
     {
         _health = maxHealth;
+    }
+
+    protected void Update()
+    {
+        if (_statusEffects.Count > 0) HandleEffects();
     }
 
     public (float theoryDamage, float actualDamage) TakeDamage(float amount)
@@ -42,34 +47,53 @@ public abstract class Health : MonoBehaviour, IEffectable
         return _health;
     }
 
-    public void AddEffect(StatusEffectData _data, int amountOfStacks = 1)
+    public void AddEffect(StatusEffect _statusEffect, int amountOfStacks = 1)
     {
-        if (_statusEffects.ContainsKey(_data))
+        if (_statusEffects.ContainsKey(_statusEffect))
         {
-           _statusEffects[_data] = _statusEffects[_data] + amountOfStacks > _data.MaxStacks ? _data.MaxStacks : _statusEffects[_data] + amountOfStacks;
+            _statusEffects[_statusEffect].stackSize = _statusEffects[_statusEffect].stackSize + amountOfStacks > _statusEffect.MaxStacks ? _statusEffect.MaxStacks : _statusEffects[_statusEffect].stackSize + amountOfStacks;
+            _statusEffects[_statusEffect].currentDuration = 0f;
         }
         else
         {
-            _statusEffects.Add(_data, amountOfStacks);
+            _statusEffects.Add(_statusEffect, new StatusEffectData());
+            _statusEffects[_statusEffect].particleEffect = Instantiate(_statusEffect.ParticleEffect, transform);
         }
     }
 
-    public void RemoveEffect(StatusEffectData _data)
+    public void RemoveEffect(StatusEffect statusEffect)
     {
-        if (_statusEffects.ContainsKey(_data))
+        if (_statusEffects.ContainsKey(statusEffect))
         {
-            _statusEffects.Remove(_data);
+            ParticleSystem particles = _statusEffects[statusEffect].particleEffect;
+            particles.Stop();
+            Destroy(particles, 2); 
+            _statusEffects.Remove(statusEffect);
         }
+    }
+
+    List<StatusEffect> effectsToRemove = new List<StatusEffect>();
+    public void MarkEffectForRemoval(StatusEffect statusEffect)
+    {
+        effectsToRemove.Add(statusEffect);
     }
 
     public void HandleEffects()
     {
-        foreach (KeyValuePair<StatusEffectData, int> kvp in _statusEffects){
-            Debug.Log("Name: " + kvp.Key.name + " Stacks: " + kvp.Value);
+        foreach (KeyValuePair<StatusEffect, StatusEffectData> kvp in _statusEffects)
+        {
+            if (kvp.Key == null || kvp.Value == null)
+            {
+                return;
+            }
+            kvp.Key.HandleEffect(this, kvp.Value);
         }
+
+        foreach (StatusEffect effect in effectsToRemove)
+        {
+            RemoveEffect(effect);
+        }
+        effectsToRemove.Clear();
     }
 
-    protected void Update(){
-        if (_statusEffects.Count > 0) HandleEffects();
-    }
 }
