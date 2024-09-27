@@ -47,7 +47,7 @@ public class Projectile : MonoBehaviour
         {
             if (collision.gameObject.TryGetComponent<Health>(out Health health))
             {
-                (float, float) damageDealt = health.TakeDamage(_damage);
+                (float, float) damageDealt = health.TakeDamage(_damage, _origin);
                 if(statusEffect != null){health.AddEffect(statusEffect, stacksPerHit);}
                 
                 if (_origin != null)
@@ -164,7 +164,7 @@ public class Projectile : MonoBehaviour
             try
             {
                 Creature creature = collision.GetComponentInParent<Creature>();
-                (float, float) damageDealt = creature.TakeDamage(explosionDamage);
+                (float, float) damageDealt = creature.TakeDamage(explosionDamage, _origin);
                 if(statusEffect != null){creature.AddEffect(statusEffect, stacksPerHit);}
 
                 _origin.AddDamageDealt(damageDealt);

@@ -7,6 +7,7 @@ public abstract class Health : MonoBehaviour, IEffectable
     public float maxHealth = 10f;
     float _health;
     [SerializeField] FloatingStatusBar _healthBar;
+    ProjectileWeapon _lastDamageSource = null;
 
     Dictionary<StatusEffect, StatusEffectData> _statusEffects = new Dictionary<StatusEffect, StatusEffectData>();
 
@@ -20,8 +21,10 @@ public abstract class Health : MonoBehaviour, IEffectable
         if (_statusEffects.Count > 0) HandleEffects();
     }
 
-    public (float theoryDamage, float actualDamage) TakeDamage(float amount)
+    public (float theoryDamage, float actualDamage) TakeDamage(float amount, ProjectileWeapon damageSource = null)
     {
+        if(damageSource != null) {_lastDamageSource = damageSource;}
+
         _health -= amount;
         _healthBar?.UpdateStatusBar(_health, maxHealth);
         if (_health <= 0)
@@ -34,6 +37,9 @@ public abstract class Health : MonoBehaviour, IEffectable
 
     void _Die()
     {
+        if(_lastDamageSource != null){
+            _lastDamageSource.AddKill();
+        }
         Invoke("_Despawn", 0f);
     }
 
