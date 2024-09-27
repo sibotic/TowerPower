@@ -10,6 +10,10 @@ enum ReloadType
 public abstract class ProjectileWeapon : MonoBehaviour
 {
 
+    [Header("Weapon")]
+    [SerializeField] string weaponName;
+    [SerializeField] string description;
+
     [Header("Projectile")]
     public GameObject bullet;
     public bool homingProjectiles;
@@ -36,6 +40,7 @@ public abstract class ProjectileWeapon : MonoBehaviour
 
     ProjectileWeapon _scriptReference;
     (float theory, float actual) _damageDealt;
+    int _kills;
 
 
 
@@ -207,6 +212,11 @@ public abstract class ProjectileWeapon : MonoBehaviour
         if(_ammoLeft > ammoCapacity){_ammoLeft = ammoCapacity;}
 
         return true;
+    }
+    //potential to add enemie types or a whole list what has been killed for in depth statistics
+    public void AddKill(){
+        _kills++;
+        Debug.Log($"Something has been killed with {weaponName} ({_kills})  ");
     }
 
 }
