@@ -222,6 +222,7 @@ public class Tower : ProjectileWeapon
 
         if (GoldManager.SpendGold(upgrade.GetComponent<Tower>().cost))
         {
+            Debug.Log("Upgrade: " + upgrade.name);
             Instantiate(upgrade, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }

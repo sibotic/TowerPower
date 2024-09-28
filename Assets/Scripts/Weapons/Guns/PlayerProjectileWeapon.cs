@@ -49,6 +49,10 @@ public class PlayerProjectileWeapon : ProjectileWeapon
         }
     }
 
+    public void ToggleActive(){
+        enabled = !enabled;
+    }
+
     // private void OnDrawGizmos()
     // {
     //     Gizmos.color = new Color(1, 1, 0, .2f);

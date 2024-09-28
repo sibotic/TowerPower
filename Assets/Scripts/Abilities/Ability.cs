@@ -23,4 +23,8 @@ public abstract class Ability : MonoBehaviour
     void AllowedToCast(){
         _allowedToCast = true;
     }
+
+    public void ToggleActive(){
+        this.enabled = !this.enabled;
+    }
 }

@@ -46,6 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1817fc9f188dd414daf2cf82f0ae7dbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponName: 
+  description: 
   bullet: {fileID: 6479960818442666905, guid: f49e4fb71d582a443b9cad1947f00946, type: 3}
   homingProjectiles: 1
   damageMultiplier: 1.5

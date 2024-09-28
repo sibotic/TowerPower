@@ -457,6 +457,50 @@ Transform:
   m_Father: {fileID: 709213928}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &106865091 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7139042676972845617, guid: 2eb31e075821d014e8569cb340c93a58, type: 3}
+  m_PrefabInstance: {fileID: 1083847672}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &106865093 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7139042676972845647, guid: 2eb31e075821d014e8569cb340c93a58, type: 3}
+  m_PrefabInstance: {fileID: 1083847672}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106865091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c0db763e2a51a44c8ef0586937fb2ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &106865094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106865091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86a8ee1c80c479747982beffb15869e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: c86ae81b683ab4c48822bb9894fe47a7, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 106865093}
+        m_TargetAssemblyTypeName: PlayerProjectileWeapon, Assembly-CSharp
+        m_MethodName: ToggleActive
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!20 &134441453 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 8358403626402219084, guid: d31469563a85ada4fa0e7ace466bcd9c, type: 3}
@@ -1766,6 +1810,14 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7139042676972845647, guid: 2eb31e075821d014e8569cb340c93a58, type: 3}
+      propertyPath: weaponName
+      value: Player Weapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 7139042676972845647, guid: 2eb31e075821d014e8569cb340c93a58, type: 3}
+      propertyPath: description
+      value: just that
+      objectReference: {fileID: 0}
+    - target: {fileID: 7139042676972845647, guid: 2eb31e075821d014e8569cb340c93a58, type: 3}
       propertyPath: ammoCapacity
       value: 360
       objectReference: {fileID: 0}
@@ -2881,12 +2933,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6479960818442666905, guid: f49e4fb71d582a443b9cad1947f00946, type: 3}
     - target: {fileID: 2089609875738231071, guid: 1697a3410ecbf42478ce18476ca0f6ee, type: 3}
+      propertyPath: weaponName
+      value: State Tower
+      objectReference: {fileID: 0}
+    - target: {fileID: 2089609875738231071, guid: 1697a3410ecbf42478ce18476ca0f6ee, type: 3}
+      propertyPath: description
+      value: Just a lill more OP
+      objectReference: {fileID: 0}
+    - target: {fileID: 2089609875738231071, guid: 1697a3410ecbf42478ce18476ca0f6ee, type: 3}
       propertyPath: updateTarget
       value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 2089609875738231071, guid: 1697a3410ecbf42478ce18476ca0f6ee, type: 3}
       propertyPath: damageMultiplier
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2089609875789672309, guid: 1697a3410ecbf42478ce18476ca0f6ee, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1697a3410ecbf42478ce18476ca0f6ee, type: 3}
@@ -3005,6 +3069,42 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 134441453}
+    - target: {fileID: 8074837591246552970, guid: d31469563a85ada4fa0e7ace466bcd9c, type: 3}
+      propertyPath: towerToBuild
+      value: 
+      objectReference: {fileID: 2089609875738231070, guid: 44ac63a1e2a1d1d48897289d458f5ee8, type: 3}
+    - target: {fileID: 8074837591246552970, guid: d31469563a85ada4fa0e7ace466bcd9c, type: 3}
+      propertyPath: towers.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8074837591246552970, guid: d31469563a85ada4fa0e7ace466bcd9c, type: 3}
+      propertyPath: towers.Array.data[1]
+      value: 
+      objectReference: {fileID: 2089609875738231070, guid: 293d5818cebba9b46b39f96959630da2, type: 3}
+    - target: {fileID: 8074837591246552970, guid: d31469563a85ada4fa0e7ace466bcd9c, type: 3}
+      propertyPath: towers.Array.data[2]
+      value: 
+      objectReference: {fileID: 2089609875738231070, guid: 44ac63a1e2a1d1d48897289d458f5ee8, type: 3}
+    - target: {fileID: 8074837591246552970, guid: d31469563a85ada4fa0e7ace466bcd9c, type: 3}
+      propertyPath: towers.Array.data[3]
+      value: 
+      objectReference: {fileID: 2089609875738231070, guid: 53d859326ef40b14d883e3da968aff99, type: 3}
+    - target: {fileID: 8074837591246552970, guid: d31469563a85ada4fa0e7ace466bcd9c, type: 3}
+      propertyPath: towers.Array.data[4]
+      value: 
+      objectReference: {fileID: 2089609875738231070, guid: 1697a3410ecbf42478ce18476ca0f6ee, type: 3}
+    - target: {fileID: 8074837591246552970, guid: d31469563a85ada4fa0e7ace466bcd9c, type: 3}
+      propertyPath: towers.Array.data[7]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8074837591246552970, guid: d31469563a85ada4fa0e7ace466bcd9c, type: 3}
+      propertyPath: buildModeChangedEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: c86ae81b683ab4c48822bb9894fe47a7, type: 2}
+    - target: {fileID: 8074837591246552970, guid: d31469563a85ada4fa0e7ace466bcd9c, type: 3}
+      propertyPath: enteredBuildModeEvent
+      value: 
+      objectReference: {fileID: 11400000, guid: c86ae81b683ab4c48822bb9894fe47a7, type: 2}
     - target: {fileID: 8514145119856989987, guid: d31469563a85ada4fa0e7ace466bcd9c, type: 3}
       propertyPath: m_TagString
       value: Player
@@ -7993,6 +8093,106 @@ MonoBehaviour:
   cooldownTime: 5
   _cloud: {fileID: 549518363502660850, guid: 1577946cd9c96934db555291ffc1b598, type: 3}
   _castPosition: {fileID: 808658102}
+--- !u!114 &1976112617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1976112601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86a8ee1c80c479747982beffb15869e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: c86ae81b683ab4c48822bb9894fe47a7, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1976112607}
+        m_TargetAssemblyTypeName: Ability, Assembly-CSharp
+        m_MethodName: ToggleActive
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1976112612}
+        m_TargetAssemblyTypeName: Ability, Assembly-CSharp
+        m_MethodName: ToggleActive
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1976112613}
+        m_TargetAssemblyTypeName: Ability, Assembly-CSharp
+        m_MethodName: ToggleActive
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1976112611}
+        m_TargetAssemblyTypeName: Ability, Assembly-CSharp
+        m_MethodName: ToggleActive
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Ability, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Ability, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Ability, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1990587707
 GameObject:
   m_ObjectHideFlags: 0
